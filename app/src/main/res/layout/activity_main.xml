@@ -13,7 +13,6 @@
 
 
         android:gravity="center"
-        android:text="TODO :  \n1. Adding Login/signup Fragment in main activity \n2. Add home actvity where all fragment for app will come \n3. On login Change from main to home actvity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
