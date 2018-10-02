@@ -112,7 +112,7 @@ public class Signup_fragment extends Fragment implements View.OnClickListener{
                                             radioButton = (RadioButton)getActivity().findViewById(radioGroup.getCheckedRadioButtonId());
                                             signType = radioButton.getText().toString();
                                             UserData userData = new UserData(signType, register_userName.getText().toString(), email);
-                                            rootReference.child(firebaseUser.getUid()).setValue(userData)
+                                            rootReference.child("Users").child(firebaseUser.getUid()).setValue(userData)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {

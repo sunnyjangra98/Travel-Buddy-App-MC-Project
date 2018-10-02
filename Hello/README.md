@@ -1,3 +1,8 @@
 # LogInSample_Fragments
 
-Login and Signup are fully functional and ready to use
+version-1<br>
+ CheckBox-Show password added <br>
+ Password-InputType changed to textPassword
+<br>
+version-2<br>
+ Fragments are added dynamically<br>

@@ -1,27 +1,71 @@
 {
   "project_info": {
-    "project_number": "469101432330",
-    "firebase_url": "https://loginsignupproject-33371.firebaseio.com",
-    "project_id": "loginsignupproject-33371",
-    "storage_bucket": "loginsignupproject-33371.appspot.com"
+    "project_number": "182773323519",
+    "firebase_url": "https://travel-buddy-app.firebaseio.com",
+    "project_id": "travel-buddy-app",
+    "storage_bucket": "travel-buddy-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:469101432330:android:5c287ed9a25a94ae",
+        "mobilesdk_app_id": "1:182773323519:android:dde65f19ddff44d7",
+        "android_client_info": {
+          "package_name": "com.example.application.travelbuddyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182773323519-a43abh4okn343ponjjnis86tj4rgo38q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.application.travelbuddyapp",
+            "certificate_hash": "29bd8c7485b6a4d58dc85b6c7a40205d82ec1df7"
+          }
+        },
+        {
+          "client_id": "182773323519-o5q3m0u7ipquaodgn99dg4hg26fev6mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfOQaytjLVa-gia40gWDKjf7WFNo8Fit4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182773323519-o5q3m0u7ipquaodgn99dg4hg26fev6mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182773323519:android:5c287ed9a25a94ae",
         "android_client_info": {
           "package_name": "project.iiitd.loginsample"
         }
       },
       "oauth_client": [
         {
-          "client_id": "469101432330-r1infve3d1se9h3n8bir2k0a1u892p9p.apps.googleusercontent.com",
+          "client_id": "182773323519-o5q3m0u7ipquaodgn99dg4hg26fev6mv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDFQLwadI_q8peb4T-_MxyOwX-A2hjddyg"
+          "current_key": "AIzaSyBfOQaytjLVa-gia40gWDKjf7WFNo8Fit4"
         }
       ],
       "services": {

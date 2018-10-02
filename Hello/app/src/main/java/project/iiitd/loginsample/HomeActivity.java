@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         signout = (Button) findViewById(R.id.signout_button);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        rootReference = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid());
+        rootReference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
 
         rootReference.addValueEventListener(new ValueEventListener() {
             @Override
