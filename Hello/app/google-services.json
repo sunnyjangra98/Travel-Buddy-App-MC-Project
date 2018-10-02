@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "469101432330",
+    "firebase_url": "https://loginsignupproject-33371.firebaseio.com",
+    "project_id": "loginsignupproject-33371",
+    "storage_bucket": "loginsignupproject-33371.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469101432330:android:5c287ed9a25a94ae",
+        "android_client_info": {
+          "package_name": "project.iiitd.loginsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469101432330-r1infve3d1se9h3n8bir2k0a1u892p9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFQLwadI_q8peb4T-_MxyOwX-A2hjddyg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

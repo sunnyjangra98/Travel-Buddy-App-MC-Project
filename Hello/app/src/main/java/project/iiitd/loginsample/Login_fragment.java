@@ -1,0 +1,110 @@
+package project.iiitd.loginsample;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+public class Login_fragment extends Fragment implements View.OnClickListener{
+
+    EditText login_email, login_password;
+    CheckBox login_showPassword;
+    Button login_button, newUser_button;
+    ToAndFro taf;
+    FirebaseAuth firebaseAuth;
+    String email, password;
+    ProgressDialog progressDialog;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.fragment_login_fragment, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        login_email = (EditText) getActivity().findViewById(R.id.email_login);
+        login_password = (EditText) getActivity().findViewById(R.id.password_login);
+        login_showPassword = (CheckBox) getActivity().findViewById(R.id.showPassword_login);
+        login_button = (Button) getActivity().findViewById(R.id.login_button);
+        newUser_button = (Button) getActivity().findViewById(R.id.newUser_button);
+        taf = (ToAndFro) getActivity();
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(getContext());
+
+        login_showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    login_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                }
+                else{
+                    login_password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                }
+            }
+        });
+
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressDialog.setMessage("Connecting to server...");
+                progressDialog.show();
+                if (login_email.getText().toString().equals("") ||
+                        login_password.getText().toString().equals("")) {
+                    progressDialog.dismiss();
+                    Toast.makeText(getActivity(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    email = login_email.getText().toString();
+                    password = login_password.getText().toString();
+                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                        getActivity().finish();
+                                        Intent toHomeActivity = new Intent(getActivity(), HomeActivity.class);
+                                        startActivity(toHomeActivity);
+                                    }
+                                    else
+                                    {
+                                        progressDialog.dismiss();
+                                    }
+                                        Toast.makeText(getActivity(), "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+                                    }
+                            });
+                }
+            }
+        });
+
+        newUser_button.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Fragment signUp_Fragment = new Signup_fragment();
+        taf.ChangeFragment(signUp_Fragment);
+    }
+}

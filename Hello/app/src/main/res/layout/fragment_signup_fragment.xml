@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signup_fragment"
+    android:background="@android:color/holo_blue_bright">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="REGISTER"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="30dp"
+        android:text="username: "/>
+
+    <EditText
+        android:id="@+id/register_username"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="110dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="e-mail: "
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="30dp"/>
+
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="password: "
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="30dp"/>
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Re-type password: "
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="30dp"/>
+
+    <EditText
+        android:id="@+id/register_reTypePassword"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="150dp"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="310dp"
+        android:text="*password should be atleast of 6 characters" />
+
+    <CheckBox
+        android:id="@+id/showPassword_register"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="335dp"
+        android:text="Show Password" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/travellerButton"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="Traveller"
+            android:checked="true"
+            android:layout_marginTop="380dp"
+            android:layout_marginLeft="60dp"/>
+
+        <RadioButton
+            android:id="@+id/guideButton"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="Guide"
+            android:layout_marginTop="-40dp"
+            android:layout_marginLeft="200dp"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"
+        android:background="@android:color/holo_green_light"
+        android:text="REGISTER" />
+
+    <Button
+        android:id="@+id/alreadyUser_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:text="Already a user? Login"
+        android:textColor="@android:color/holo_blue_dark" />
+
+</RelativeLayout>

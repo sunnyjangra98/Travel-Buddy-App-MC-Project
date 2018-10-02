@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_fragment"
+    android:background="@android:color/holo_blue_bright">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="123dp"
+        android:text="LOGIN"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="202dp"
+        android:layout_marginLeft="21dp"
+        android:text="email:"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/email_login"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="202dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="262dp"
+        android:text="password:"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/password_login"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="262dp" />
+
+    <CheckBox
+        android:id="@+id/showPassword_login"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="310dp"
+        android:text="Show Password" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        android:background="@android:color/holo_green_light"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/newUser_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp"
+        android:text="New user? Register here"
+        android:textColor="@android:color/holo_blue_dark" />
+
+</RelativeLayout>
