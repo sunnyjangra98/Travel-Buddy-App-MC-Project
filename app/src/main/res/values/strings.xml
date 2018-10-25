@@ -13,4 +13,20 @@
     <string name="guide">Guide</string>
     <string name="already_a_user_login">Already a user? Login</string>
     <string name="title_activity_local_translation_fragment">LocalTranslationFragment</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_stay">Stay</string>
+    <string name="title_trip">Trip</string>
+    <string name="title_account">Account</string>
+    <string name="search_for_stay_here">Search for stay here...</string>
+    <string name="apple_macbook_air_core_i5_5th_gen_8_gb_128_gb_ssd_mac_os_sierra">Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)</string>
+    <string name="_13_3_inch_256_gb">13.3 Inch, 256 GB</string>
+    <string name="_4_7">4.7</string>
+    <string name="inr_56990">INR 56990</string>
+    <string name="name_of_the_host">Name of the Host</string>
+    <string name="name_of_the_stay">Name of the stay</string>
+    <string name="_4_5">4.5</string>
+    <string name="other_short_breif">Other Short breif</string>
+    <string name="textview">TextView</string>
+
+
 </resources>

@@ -16,8 +16,8 @@ public class FindTravelFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static FindGuideFragment newInstance(String param1, String param2) {
-        FindGuideFragment fragment = new FindGuideFragment();
+    public static FindTravelFragment newInstance(String param1, String param2) {
+        FindTravelFragment fragment = new FindTravelFragment();
         return fragment;
     }
 
