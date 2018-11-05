@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_trip"
+        android:icon="@drawable/outline_business_center_black_48dp"
+        android:title="@string/title_trip"
+         />
+
+    <item
+        android:id="@+id/navigation_stay"
+        android:icon="@drawable/outline_hotel_black_48dp"
+        android:title="@string/title_stay" />
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/outline_account_box_black_48dp"
+        android:title="@string/title_account" />
+
+</menu>
