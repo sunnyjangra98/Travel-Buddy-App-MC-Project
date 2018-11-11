@@ -41,7 +41,6 @@ public class Login_fragment extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_login_fragment, container, false);
     }
 
@@ -92,7 +91,6 @@ public class Login_fragment extends Fragment implements View.OnClickListener{
                                         Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
                                         getActivity().finish();
 
-
                                         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                                         sp.edit().putBoolean("logged",true).apply();
                                         sp.edit().putString("User",email).apply();
@@ -112,9 +110,7 @@ public class Login_fragment extends Fragment implements View.OnClickListener{
                 }
             }
         });
-
         newUser_button.setOnClickListener(this);
-
     }
 
     @Override

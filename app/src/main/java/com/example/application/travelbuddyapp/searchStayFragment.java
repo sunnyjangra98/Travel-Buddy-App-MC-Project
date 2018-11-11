@@ -23,22 +23,9 @@ public class searchStayFragment extends Fragment {
     Button searchButton;
     List<Stay> stayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public searchStayFragment() {
-        // Required empty public constructor
-    }
-
-    // TODO: Rename and change types and number of parameters
-    public static searchStayFragment newInstance(String param1, String param2) {
-        searchStayFragment fragment = new searchStayFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 

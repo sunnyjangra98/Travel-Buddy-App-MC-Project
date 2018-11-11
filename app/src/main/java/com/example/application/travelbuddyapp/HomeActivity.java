@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference rootReference;
     // TextView username;
-    String name = "Welcome, ";
+    //String name = "Welcome, ";
 
     private TextView mTextMessage;
 
@@ -45,15 +46,12 @@ public class HomeActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_trip:
-
                     loadFragment(new FindTravelFragment());
                     return true;
                 case R.id.navigation_stay:
-
                     loadFragment(new Find_stay_Fragment());
                     return true;
                 case R.id.navigation_account:
-
                     loadFragment(new AccountFragment());
                     return true;
             }
@@ -65,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setScrollbarFadingEnabled(true);
@@ -72,15 +71,12 @@ public class HomeActivity extends AppCompatActivity {
         layoutParams.setBehavior(new ScrollHandler());
         sp = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
 
-        //username = (TextView) findViewById(R.id.userName);
-        //signout = (Button) findViewById(R.id.signout_button);
         firebaseAuth = FirebaseAuth.getInstance();
         if (sp.getBoolean("logged", false)) {
             String email = sp.getString("User", "");
             String password = sp.getString("password", "");
 
             //Logging in If User is already Logged in
-
             firebaseAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -101,38 +97,20 @@ public class HomeActivity extends AppCompatActivity {
                     });
         }
 
-        //firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        rootReference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+        //rootReference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
 
-        rootReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                name += dataSnapshot.child("username").getValue().toString();
-                // username.setText(name);
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if(extras != null){
+            if(extras.containsKey("fromNotification")) {
+                String msg = extras.getString("fromNotification");
+                if (msg.equals("EditProfileFragment")){
+                    loadFragment(new EditProfile());
+                }
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
-//        signout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                firebaseAuth.signOut();
-//                Toast.makeText(getApplicationContext(), "Logout successful", Toast.LENGTH_LONG).show();
-//                finish();
-//                Intent toLogin = new Intent(getApplicationContext(), LoginSignupActivity.class);
-//                startActivity(toLogin);
-//                sp.edit().putBoolean("logged",false).apply();
-//                sp.edit().putString("User","").apply();
-//                sp.edit().putString("password","").apply();
-//            }
-//        });
-
-
+        }
 
     }
     private void loadFragment(Fragment fragment) {

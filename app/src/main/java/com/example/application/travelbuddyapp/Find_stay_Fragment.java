@@ -31,52 +31,35 @@ public class Find_stay_Fragment extends Fragment {
     List<Stay> stayList;
     View root;
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public Find_stay_Fragment() {
-        // Required empty public constructor
-    }
-
-    // TODO: Rename and change types and number of parameters
-    public static Find_stay_Fragment newInstance(String param1, String param2) {
-        Find_stay_Fragment fragment = new Find_stay_Fragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-       root =  inflater.inflate(R.layout.fragment_find_stay_, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        root =  inflater.inflate(R.layout.fragment_find_stay_, container, false);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         stayList = new ArrayList<>();
         stayList.add(
-                new Stay(1, R.drawable.stay_sample_image, "Mera Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay(1, R.drawable.stay_sample_image, "Dushyant Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         stayList.add(
-                new Stay(2, R.drawable.stay_sample_image, "Mera Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay(2, R.drawable.stay_sample_image, "Chandan Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         stayList.add(
-                new Stay(3, R.drawable.stay_sample_image, "Mera Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay(3, R.drawable.stay_sample_image, "Ashwat Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         stayList.add(
-                new Stay(4, R.drawable.stay_sample_image, "Mera Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
-       adapter = new StayAdapter(root.getContext(), stayList);
+                new Stay(4, R.drawable.stay_sample_image, "Nitish Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+        adapter = new StayAdapter(root.getContext(), stayList);
         recyclerView.setAdapter(adapter);
 
         Button searchButton = root.findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i =new Intent(getActivity(), StayFragmentsActivity.class);
+                Intent i = new Intent(getActivity(), StayFragmentsActivity.class);
                 i.putExtra(StayFragmentsActivity.FRAGMENT_NAME, StayFragmentsActivity.SEARCH_FRAGMENT_NAME);
 
                 startActivityForResult(i, SEARCH_REQUEST_CODE);
@@ -101,15 +84,4 @@ public class Find_stay_Fragment extends Fragment {
         }
 
     }
-
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-    }
-
-
-
 }
