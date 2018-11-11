@@ -40,7 +40,7 @@ public class AddStays extends Fragment {
         addStayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Add your data here
+                //Add Stay here
                 Toast.makeText(getContext(), "TODO Add stays", Toast.LENGTH_SHORT).show();
             }
         });
