@@ -57,7 +57,7 @@ public class EditProfile extends Fragment {
     EditText editName, editEmail, editAddress;
     Button saveButton;
     FloatingActionButton chooseButton;
-    String name, email, address = "", originalName, originalEmail, originalAddress = "";
+    String name, email, address, originalName, originalEmail, originalAddress;
     int REQUEST_CODE = 1;
     Uri imageUri;
     ImageView newImage;
@@ -98,6 +98,10 @@ public class EditProfile extends Fragment {
                 originalEmail = email;
                 if (dataSnapshot.hasChild("address"))
                     address = dataSnapshot.child("address").getValue().toString();
+                else{
+                    databaseReference.child("address").setValue("");
+                    address = dataSnapshot.child("address").getValue().toString();
+                }
                 originalAddress = address;
                 editName.setText(name);
                 editEmail.setText(email);
@@ -130,13 +134,15 @@ public class EditProfile extends Fragment {
                 StorageReference sRef = storageReference.child(firebaseUser.getUid());
                 progressDialog.setMessage("Updating Record");
 
-                if (originalName.equals(name) && originalEmail.equals(email) && originalAddress.equals(address)) {
+                if (originalName.equals(editName.getText().toString()) && originalEmail.equals(editEmail.getText().toString())
+                        && originalAddress.equals(editAddress.getText().toString())) {
                     Toast.makeText(getContext(), "Nothing to update", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     databaseReference.child("username").setValue(editName.getText().toString());
                     databaseReference.child("email").setValue(editEmail.getText().toString());
                     databaseReference.child("address").setValue(editAddress.getText().toString());
+                    Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                 }
 
                 displayNotification(v, "User Profile", "Record was updated successfully");
