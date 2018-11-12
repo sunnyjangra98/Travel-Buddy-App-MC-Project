@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddStays extends Fragment {
+public class AddStays extends Fragment implements StayDialog.StayDialogListener {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -40,12 +40,21 @@ public class AddStays extends Fragment {
         addStayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Add Stay here
-                Toast.makeText(getContext(), "TODO Add stays", Toast.LENGTH_SHORT).show();
+                openDialog();
             }
         });
 
         return root;
     }
 
+    public void openDialog(){
+        StayDialog stayDialog = new StayDialog();
+        stayDialog.setTargetFragment(AddStays.this, 1);
+        stayDialog.show(getFragmentManager(), "AddStayFragment");
+    }
+
+    @Override
+    public void sendBackToFragment(String hostName, String Place, String Date) {
+        Toast.makeText(getContext(), "Now to add this in list", Toast.LENGTH_SHORT).show();
+    }
 }
