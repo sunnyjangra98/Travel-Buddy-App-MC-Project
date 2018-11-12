@@ -21,11 +21,10 @@ import java.util.Calendar;
 
 public class StayDialog extends AppCompatDialogFragment {
 
-    EditText editHostName, editPlace, editDate;
+    EditText editHostName, editPlace, editDate, editCity;
     ImageButton calendarImageButton;
     private  StayDialogListener listner;
     private int mYear, mMonth, mDay;
-    private String newDate = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,6 +35,7 @@ public class StayDialog extends AppCompatDialogFragment {
         editHostName = (EditText) view.findViewById(R.id.editHostName);
         editPlace = (EditText) view.findViewById(R.id.editPlace);
         editDate = (EditText) view.findViewById(R.id.editDate);
+        editCity = (EditText) view.findViewById(R.id.editCity);
         calendarImageButton = (ImageButton) view.findViewById(R.id.calendarImageButton);
 
         calendarImageButton.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +69,8 @@ public class StayDialog extends AppCompatDialogFragment {
                 String hostName = editHostName.getText().toString();
                 String place = editPlace.getText().toString();
                 String date = editDate.getText().toString();
-                listner.sendBackToFragment(hostName, place, date);
+                String city = editCity.getText().toString();
+                listner.sendBackToFragment(hostName, place, date, city);
                 getDialog().dismiss();
             }
         });
@@ -88,6 +89,6 @@ public class StayDialog extends AppCompatDialogFragment {
     }
 
     public interface StayDialogListener{
-        void sendBackToFragment(String hostName, String Place, String Date);
+        void sendBackToFragment(String hostName, String Place, String Date, String City);
     }
 }

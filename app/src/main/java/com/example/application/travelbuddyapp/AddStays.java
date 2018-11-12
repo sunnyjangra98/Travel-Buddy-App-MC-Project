@@ -54,7 +54,7 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
     }
 
     @Override
-    public void sendBackToFragment(String hostName, String Place, String Date) {
+    public void sendBackToFragment(String hostName, String Place, String Date, String City) {
         Toast.makeText(getContext(), "Now to add this in list", Toast.LENGTH_SHORT).show();
     }
 }
