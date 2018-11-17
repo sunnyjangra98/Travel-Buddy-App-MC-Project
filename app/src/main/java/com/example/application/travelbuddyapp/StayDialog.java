@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 public class StayDialog extends AppCompatDialogFragment {
 
-    EditText editHostName, editPlace, editDate, editCity;
+    EditText editStayName, editHostName, editPlace, editDate, editCity;
     ImageButton calendarImageButton;
     private  StayDialogListener listner;
     private int mYear, mMonth, mDay;
@@ -33,6 +33,7 @@ public class StayDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.addstaydialog, null);
 
+        editStayName = (EditText) view.findViewById(R.id.editStayName);
         editHostName = (EditText) view.findViewById(R.id.editHostName);
         editPlace = (EditText) view.findViewById(R.id.editPlace);
         editDate = (EditText) view.findViewById(R.id.editDate);
@@ -67,11 +68,13 @@ public class StayDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                String stayName = editStayName.getText().toString();
                 String hostName = editHostName.getText().toString();
                 String place = editPlace.getText().toString();
                 String date = editDate.getText().toString();
                 String city = editCity.getText().toString();
-                if (editHostName.getText().toString().equals("") ||
+                if (editStayName.getText().toString().equals("") ||
+                        editHostName.getText().toString().equals("") ||
                         editPlace.getText().toString().equals("") ||
                         editDate.getText().toString().equals("") ||
                         editCity.getText().toString().equals("")) {
@@ -79,7 +82,7 @@ public class StayDialog extends AppCompatDialogFragment {
                 }
                 else
                 {
-                    listner.sendBackToFragment(hostName, place, date, city);
+                    listner.sendBackToFragment(stayName, hostName, place, date, city);
                     getDialog().dismiss();
                 }
             }
@@ -99,6 +102,6 @@ public class StayDialog extends AppCompatDialogFragment {
     }
 
     public interface StayDialogListener{
-        void sendBackToFragment(String hostName, String Place, String Date, String City);
+        void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City);
     }
 }

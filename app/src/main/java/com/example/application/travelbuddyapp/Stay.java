@@ -7,10 +7,10 @@ public class Stay implements Serializable{
     private int image;
     private String stay_name;
     private String stay_person;
-    private String rating;
+    private float rating;
     private String hostDate;
 
-    public Stay(String stay_id, int image, String stay_name, String stay_person, String rating, String hostDate) {
+    public Stay(String stay_id, int image, String stay_name, String stay_person, float rating, String hostDate) {
         this.stay_id = stay_id;
         this.image = image;
         this.stay_name = stay_name;
@@ -35,7 +35,7 @@ public class Stay implements Serializable{
         return stay_person;
     }
 
-    public String getRating() {
+    public float getRating() {
         return rating;
     }
 
@@ -59,7 +59,7 @@ public class Stay implements Serializable{
         this.stay_person = stay_person;
     }
 
-    public void setRating(String rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

@@ -33,14 +33,14 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    DatabaseReference databaseReference, databaseReference1;
+    DatabaseReference databaseReference;
     StorageReference storageReference;
     FloatingActionButton addStayButton;
     StayAdapter adapter;
     RecyclerView recyclerView;
     List<Stay> addStayList;
     Stay newStay;
-    String rHostName, rPlace, rDate, rCity, rName;
+    String rHostName, rPlace, rDate, rCity, rStayName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Stay");
-        databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
         storageReference = FirebaseStorage.getInstance().getReference().child("StayImages");
         addStayButton = (FloatingActionButton) root.findViewById(R.id.addStayButton);
         recyclerView = (RecyclerView) root.findViewById(R.id.add_stay_list);
@@ -90,27 +89,14 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
     }
 
     @Override
-    public void sendBackToFragment(String hostName, String Place, String Date, String City) {
+    public void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City) {
+        rStayName = stayName;
         rHostName = hostName;
         rPlace = Place;
         rDate = Date;
         rCity = City;
 
-        databaseReference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String uName = dataSnapshot.child("username").getValue().toString();
-                databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(uName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        newStay = new Stay(firebaseUser.getUid(), R.drawable.defaulthouse, rName, rHostName, "0", rDate);
-        //Log.d("TAG", "username got:" + uName);
+        newStay = new Stay(firebaseUser.getUid(), R.drawable.defaulthouse, rStayName, rHostName, 0, rDate);
         addStayList.add(newStay);
         databaseReference.child(rCity).child(firebaseUser.getUid()).setValue(newStay);
     }

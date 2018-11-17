@@ -56,11 +56,11 @@ public class searchStayFragment extends Fragment {
 
         stayList = new ArrayList<>();
         stayList.add(
-                new Stay("1", R.drawable.stay_sample_image, "Tera Ghar", "YOYO ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("1", R.drawable.stay_sample_image, "Tera Ghar", "YOYO ji Dwara", 4.5f, "Padharo mhare desh"));
         stayList.add(
-                new Stay("2", R.drawable.stay_sample_image, "Tera Ghar", "YOYO ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("2", R.drawable.stay_sample_image, "Tera Ghar", "YOYO ji Dwara", 4.5f, "Padharo mhare desh"));
         stayList.add(
-                new Stay("3", R.drawable.stay_sample_image, "Tera Ghar", "HAMARE ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("3", R.drawable.stay_sample_image, "Tera Ghar", "HAMARE ji Dwara", 4, "Padharo mhare desh"));
 
 
 
