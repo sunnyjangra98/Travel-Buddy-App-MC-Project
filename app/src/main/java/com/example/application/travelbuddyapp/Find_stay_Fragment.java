@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +28,6 @@ public class Find_stay_Fragment extends Fragment {
     public static String STAY_ = "STAY_";
     StayAdapter adapter;
     RecyclerView recyclerView;
-
     List<Stay> stayList;
     View root;
 
@@ -45,15 +45,23 @@ public class Find_stay_Fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         stayList = new ArrayList<>();
         stayList.add(
-                new Stay(1, R.drawable.stay_sample_image, "Dushyant Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("1", R.drawable.stay_sample_image, "Dushyant Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         stayList.add(
-                new Stay(2, R.drawable.stay_sample_image, "Chandan Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("2", R.drawable.stay_sample_image, "Chandan Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         stayList.add(
-                new Stay(3, R.drawable.stay_sample_image, "Ashwat Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("3", R.drawable.stay_sample_image, "Ashwat Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         stayList.add(
-                new Stay(4, R.drawable.stay_sample_image, "Nitish Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("4", R.drawable.stay_sample_image, "Nitish Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
         adapter = new StayAdapter(root.getContext(), stayList);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListner(new StayAdapter.OnItemClickListner() {
+            @Override
+            public void onItemClick(int position) {
+                stayList.get(position);
+                loadFragment(new SearchStayCardOpen());
+            }
+        });
 
         Button searchButton = root.findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -83,5 +91,13 @@ public class Find_stay_Fragment extends Fragment {
             }
         }
 
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, fragment);
+        //transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

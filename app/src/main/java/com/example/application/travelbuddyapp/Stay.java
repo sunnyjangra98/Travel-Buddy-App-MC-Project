@@ -3,23 +3,23 @@ package com.example.application.travelbuddyapp;
 import java.io.Serializable;
 
 public class Stay implements Serializable{
-    private int stay_id;
+    private String stay_id;
     private int image;
     private String stay_name;
     private String stay_person;
     private String rating;
-    private String brief;
+    private String hostDate;
 
-    public Stay(int stay_id, int image, String stay_name, String stay_person, String rating, String brief) {
+    public Stay(String stay_id, int image, String stay_name, String stay_person, String rating, String hostDate) {
         this.stay_id = stay_id;
         this.image = image;
         this.stay_name = stay_name;
         this.stay_person = stay_person;
         this.rating = rating;
-        this.brief = brief;
+        this.hostDate = hostDate;
     }
 
-    public int getStay_id() {
+    public String getStay_id() {
         return stay_id;
     }
 
@@ -39,11 +39,11 @@ public class Stay implements Serializable{
         return rating;
     }
 
-    public String getBrief() {
-        return brief;
+    public String gethostDate() {
+        return hostDate;
     }
 
-    public void setStay_id(int stay_id) {
+    public void setStay_id(String stay_id) {
         this.stay_id = stay_id;
     }
 
@@ -63,7 +63,7 @@ public class Stay implements Serializable{
         this.rating = rating;
     }
 
-    public void setBrief(String brief) {
-        this.brief = brief;
+    public void sethostDate(String hostDate) {
+        this.hostDate = hostDate;
     }
 }

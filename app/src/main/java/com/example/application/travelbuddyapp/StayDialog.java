@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.application.travelbuddyapp.R;
 
@@ -70,8 +71,17 @@ public class StayDialog extends AppCompatDialogFragment {
                 String place = editPlace.getText().toString();
                 String date = editDate.getText().toString();
                 String city = editCity.getText().toString();
-                listner.sendBackToFragment(hostName, place, date, city);
-                getDialog().dismiss();
+                if (editHostName.getText().toString().equals("") ||
+                        editPlace.getText().toString().equals("") ||
+                        editDate.getText().toString().equals("") ||
+                        editCity.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Please fill all fields \n   Nothing to Add", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    listner.sendBackToFragment(hostName, place, date, city);
+                    getDialog().dismiss();
+                }
             }
         });
         return builder.create();
