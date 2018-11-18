@@ -49,7 +49,7 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
         Stay stay = stayList.get(position);
 
         //binding the data with the viewholder view
-        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(stay.getImage()));
+        holder.imageView.setImageURI(stay.getImage());
         holder.textView_stay.setText(stay.getStay_name());
         holder.textView_person.setText(stay.getStay_person());
         holder.textView_brief.setText(String.valueOf(stay.gethostDate()));

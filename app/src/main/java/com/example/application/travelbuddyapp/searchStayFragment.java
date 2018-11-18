@@ -1,6 +1,7 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +23,7 @@ public class searchStayFragment extends Fragment {
     SearchView searchView;
     Button searchButton;
     List<Stay> stayList;
+    Uri imageUri;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,16 +57,9 @@ public class searchStayFragment extends Fragment {
         */
 
         stayList = new ArrayList<>();
+        imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getResources().getResourcePackageName(R.drawable.stay_sample_image));;
         stayList.add(
-                new Stay("1", R.drawable.stay_sample_image, "Tera Ghar", "YOYO ji Dwara", 4.5f, "Padharo mhare desh"));
-        stayList.add(
-                new Stay("2", R.drawable.stay_sample_image, "Tera Ghar", "YOYO ji Dwara", 4.5f, "Padharo mhare desh"));
-        stayList.add(
-                new Stay("3", R.drawable.stay_sample_image, "Tera Ghar", "HAMARE ji Dwara", 4, "Padharo mhare desh"));
-
-
-
-
+                new Stay("1", imageUri, "Tera Ghar", "YOYO ji Dwara", 4.5f, "Padharo mhare desh"));
 
         return root;
     }

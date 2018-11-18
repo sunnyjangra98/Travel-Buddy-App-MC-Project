@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="60" />
+                                                <entry key="scalingPercent" value="128" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -36,8 +36,10 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="3f51b5" />
-                                      <entry key="foregroundImage" value="C:\Users\champ\Desktop\travelbuddy_logo.png" />
-                                      <entry key="foregroundLayerName" value="travel_buddy_logo" />
+                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
+                                      <entry key="foregroundImage" value="C:\Users\HP\Downloads\default_house.jpg" />
+                                      <entry key="foregroundLayerName" value="default_house_logo" />
+                                      <entry key="outputName" value="ic_default_house" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -68,7 +70,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_home_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -78,7 +80,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="add_image_button_fab" />
+                            <entry key="outputName" value="ic_home" />
                             <entry key="sourceFile" value="C:\Users\HP" />
                           </map>
                         </option>

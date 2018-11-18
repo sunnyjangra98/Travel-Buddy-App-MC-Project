@@ -1,6 +1,7 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,6 +31,7 @@ public class Find_stay_Fragment extends Fragment {
     RecyclerView recyclerView;
     List<Stay> stayList;
     View root;
+    Uri imageUri;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,14 +46,15 @@ public class Find_stay_Fragment extends Fragment {
         recyclerView = (RecyclerView) root.findViewById(R.id.stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         stayList = new ArrayList<>();
+        imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getResources().getResourcePackageName(R.drawable.stay_sample_image));
         stayList.add(
-                new Stay("1", R.drawable.stay_sample_image, "Dushyant Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("1", imageUri, "Dushyant Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
         stayList.add(
-                new Stay("2", R.drawable.stay_sample_image, "Chandan Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("2", imageUri, "Chandan Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
         stayList.add(
-                new Stay("3", R.drawable.stay_sample_image, "Ashwat Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("3", imageUri, "Ashwat Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
         stayList.add(
-                new Stay("4", R.drawable.stay_sample_image, "Nitish Ka Ghar", "Baba ji Dwara", "4.5", "Padharo mhare desh"));
+                new Stay("4", imageUri, "Nitish Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
         adapter = new StayAdapter(root.getContext(), stayList);
         recyclerView.setAdapter(adapter);
 

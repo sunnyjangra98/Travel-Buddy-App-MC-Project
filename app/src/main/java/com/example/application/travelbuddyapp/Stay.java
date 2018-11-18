@@ -1,16 +1,20 @@
 package com.example.application.travelbuddyapp;
 
+import android.net.Uri;
+
+import com.bumptech.glide.Glide;
+
 import java.io.Serializable;
 
 public class Stay implements Serializable{
     private String stay_id;
-    private int image;
+    public Uri image;
     private String stay_name;
     private String stay_person;
     private float rating;
     private String hostDate;
 
-    public Stay(String stay_id, int image, String stay_name, String stay_person, float rating, String hostDate) {
+    public Stay(String stay_id, Uri image, String stay_name, String stay_person, float rating, String hostDate) {
         this.stay_id = stay_id;
         this.image = image;
         this.stay_name = stay_name;
@@ -23,7 +27,7 @@ public class Stay implements Serializable{
         return stay_id;
     }
 
-    public int getImage() {
+    public Uri getImage() {
         return image;
     }
 
@@ -47,7 +51,7 @@ public class Stay implements Serializable{
         this.stay_id = stay_id;
     }
 
-    public void setImage(int image) {
+    public void setImage(Uri image) {
         this.image = image;
     }
 
