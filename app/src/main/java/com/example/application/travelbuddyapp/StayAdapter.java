@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+<<<<<<< HEAD
 public class StayAdapter {
 /*
+=======
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder> {
 
 
@@ -51,7 +54,11 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
         Stay stay = stayList.get(position);
 
         //binding the data with the viewholder view
+<<<<<<< HEAD
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(stay.getImage()));
+=======
+        holder.imageView.setImageURI(stay.getImage());
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
         holder.textView_stay.setText(stay.getStay_name());
         holder.textView_person.setText(stay.getStay_person());
         holder.textView_brief.setText(String.valueOf(stay.gethostDate()));
@@ -93,5 +100,8 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
 
         }
     }
+<<<<<<< HEAD
     */
+=======
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 }

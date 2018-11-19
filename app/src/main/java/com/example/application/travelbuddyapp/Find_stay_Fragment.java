@@ -1,21 +1,34 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+=======
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+<<<<<<< HEAD
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -26,12 +39,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+=======
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.ValueEventListener;
+=======
+import javax.xml.transform.Result;
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 
 public class Find_stay_Fragment extends Fragment {
     public static int SEARCH_REQUEST_CODE =1;
@@ -42,6 +61,7 @@ public class Find_stay_Fragment extends Fragment {
     RecyclerView recyclerView;
     List<Stay> stayList;
     View root;
+<<<<<<< HEAD
     String selectedItemText;
 
     DatabaseReference mDatabase;
@@ -68,18 +88,62 @@ public class Find_stay_Fragment extends Fragment {
         recyclerView = (RecyclerView) root.findViewById(R.id.stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         stayList = new ArrayList<>();
+=======
+    Uri imageUri;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        root =  inflater.inflate(R.layout.fragment_find_stay_, container, false);
+
+        recyclerView = (RecyclerView) root.findViewById(R.id.stay_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        stayList = new ArrayList<>();
+        imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getResources().getResourcePackageName(R.drawable.stay_sample_image));
+        stayList.add(
+                new Stay("1", imageUri, "Dushyant Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
+        stayList.add(
+                new Stay("2", imageUri, "Chandan Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
+        stayList.add(
+                new Stay("3", imageUri, "Ashwat Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
+        stayList.add(
+                new Stay("4", imageUri, "Nitish Ka Ghar", "Baba ji Dwara", 4.5f, "Padharo mhare desh"));
+        adapter = new StayAdapter(root.getContext(), stayList);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListner(new StayAdapter.OnItemClickListner() {
+            @Override
+            public void onItemClick(int position) {
+                stayList.get(position);
+                loadFragment(new SearchStayCardOpen());
+            }
+        });
+
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
         Button searchButton = root.findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 Intent i =new Intent(getActivity(), StayFragmentsActivity.class);
                 i.putExtra(StayFragmentsActivity.FRAGMENT_NAME, StayFragmentsActivity.SEARCH_FRAGMENT_NAME);
+=======
+                Intent i = new Intent(getActivity(), StayFragmentsActivity.class);
+                i.putExtra(StayFragmentsActivity.FRAGMENT_NAME, StayFragmentsActivity.SEARCH_FRAGMENT_NAME);
+
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
                 startActivityForResult(i, SEARCH_REQUEST_CODE);
             }
         });
         return root;
     }
 
+<<<<<<< HEAD
     public void firebaseQuery()
     {
         //selectedItemText = "Chennai";
@@ -238,6 +302,8 @@ public class Find_stay_Fragment extends Fragment {
     }
     */
 
+=======
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);Stay toAdd = null;
@@ -245,6 +311,7 @@ public class Find_stay_Fragment extends Fragment {
             if(!data.getExtras().isEmpty()){
                 stayList.clear();
                 Bundle b = data.getExtras();
+<<<<<<< HEAD
                 selectedItemText = b.getString("searchQuery");
                 DatabaseReference Ref = FirebaseDatabase.getInstance().getReference().child("Recent Stay Search");
                 Ref.child("search").setValue(selectedItemText).toString();
@@ -266,3 +333,23 @@ public class Find_stay_Fragment extends Fragment {
         super.onDetach();
     }
 }
+=======
+                for(int i=0;i<b.size();i++){
+                    stayList.add((Stay) b.getSerializable(Find_stay_Fragment.STAY_+(i+1)));
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+        }
+
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, fragment);
+        //transaction.addToBackStack(null);
+        transaction.commit();
+    }
+}
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f

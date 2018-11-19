@@ -25,5 +25,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/stay_list"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="wrap_content" />
+=======
+        android:layout_height="match_parent" />
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 </LinearLayout>
