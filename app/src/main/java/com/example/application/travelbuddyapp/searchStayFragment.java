@@ -1,10 +1,7 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.Activity;
-<<<<<<< HEAD
-=======
 import android.content.ContentResolver;
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,10 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
-<<<<<<< HEAD
-=======
-
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +22,6 @@ public class searchStayFragment extends Fragment {
     SearchView searchView;
     Button searchButton;
     List<Stay> stayList;
-<<<<<<< HEAD
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,14 +34,10 @@ public class searchStayFragment extends Fragment {
         searchStayFragment fragment = new searchStayFragment();
         return fragment;
     }
-=======
-    Uri imageUri;
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
     }
 
     String query = "Chennai";
@@ -174,64 +162,4 @@ public class searchStayFragment extends Fragment {
                 new Stay("3", R.drawable.stay_sample_image, "Tera Ghar", "HAMARE ji Dwara", "4.5", "Padharo mhare desh"));
         return root;
     }
-
-=======
-
-       /*
-       These are just to check the list
-       Update list by quering the database and update list then send it to actvity which sent intent to this
-        */
-
-        stayList = new ArrayList<>();
-        imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getResources().getResourcePackageName(R.drawable.stay_sample_image));;
-        stayList.add(
-                new Stay("1", imageUri, "Tera Ghar", "YOYO ji Dwara", 4.5f, "Padharo mhare desh"));
-
-        return root;
-    }
-
-
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
-    @Override
-    public void onStart(){
-        super.onStart();
-        searchButton = root.findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent data = new Intent();
-                for(int i= 0; i<stayList.size();i++){
-                    data.putExtra(Find_stay_Fragment.STAY_+(i+1),stayList.get(i));
-                }
-<<<<<<< HEAD
-                getActivity().setResult(Activity.RESULT_OK, data);
-                getActivity().finish();
-            }
-        });
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-}
 */
-=======
-
-                getActivity().setResult(Activity.RESULT_OK, data);
-                getActivity().finish();
-
-
-            }
-        });
-    }
-
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-    }
-
-}
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f

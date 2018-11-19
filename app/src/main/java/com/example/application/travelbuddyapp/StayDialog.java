@@ -21,12 +21,8 @@ import com.example.application.travelbuddyapp.R;
 import java.util.Calendar;
 
 public class StayDialog extends AppCompatDialogFragment {
-
-<<<<<<< HEAD
-    EditText editHostName, editPlace, editDate, editCity;
-=======
+    //EditText editHostName, editPlace, editDate, editCity;
     EditText editStayName, editHostName, editPlace, editDate, editCity;
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
     ImageButton calendarImageButton;
     private  StayDialogListener listner;
     private int mYear, mMonth, mDay;
@@ -37,10 +33,7 @@ public class StayDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.addstaydialog, null);
 
-<<<<<<< HEAD
-=======
         editStayName = (EditText) view.findViewById(R.id.editStayName);
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
         editHostName = (EditText) view.findViewById(R.id.editHostName);
         editPlace = (EditText) view.findViewById(R.id.editPlace);
         editDate = (EditText) view.findViewById(R.id.editDate);
@@ -75,20 +68,14 @@ public class StayDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-<<<<<<< HEAD
-=======
                 String stayName = editStayName.getText().toString();
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
                 String hostName = editHostName.getText().toString();
                 String place = editPlace.getText().toString();
                 String date = editDate.getText().toString();
                 String city = editCity.getText().toString();
-<<<<<<< HEAD
-                if (editHostName.getText().toString().equals("") ||
-=======
+                //if (editHostName.getText().toString().equals("") ||
                 if (editStayName.getText().toString().equals("") ||
                         editHostName.getText().toString().equals("") ||
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
                         editPlace.getText().toString().equals("") ||
                         editDate.getText().toString().equals("") ||
                         editCity.getText().toString().equals("")) {
@@ -96,11 +83,8 @@ public class StayDialog extends AppCompatDialogFragment {
                 }
                 else
                 {
-<<<<<<< HEAD
                     listner.sendBackToFragment(hostName, place, date, city);
-=======
                     listner.sendBackToFragment(stayName, hostName, place, date, city);
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
                     getDialog().dismiss();
                 }
             }
@@ -111,7 +95,6 @@ public class StayDialog extends AppCompatDialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         try {
             listner = (StayDialogListener) getTargetFragment();
         } catch (ClassCastException e) {
@@ -120,10 +103,7 @@ public class StayDialog extends AppCompatDialogFragment {
     }
 
     public interface StayDialogListener{
-<<<<<<< HEAD
         void sendBackToFragment(String hostName, String Place, String Date, String City);
-=======
         void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City);
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
     }
 }

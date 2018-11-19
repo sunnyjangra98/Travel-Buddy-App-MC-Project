@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-<<<<<<< HEAD
 public class StayAdapter {
 /*
 =======
@@ -102,6 +101,4 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
     }
 <<<<<<< HEAD
     */
-=======
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 }

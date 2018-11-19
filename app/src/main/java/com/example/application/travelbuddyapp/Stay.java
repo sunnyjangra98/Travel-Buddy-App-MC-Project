@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 package com.example.application.travelbuddyapp;
 
@@ -215,5 +214,3 @@ public class Stay implements Serializable{
 }
 <<<<<<< HEAD
 */
-=======
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
