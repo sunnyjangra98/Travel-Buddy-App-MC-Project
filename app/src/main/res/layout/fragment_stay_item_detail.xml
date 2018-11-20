@@ -125,17 +125,17 @@
 
                         <ImageButton
                             android:id="@+id/travellerAdd"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignEnd="@+id/selectPeople"
+                            android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_alignRight="@+id/selectPeople"
                             android:layout_margin="5dp"
                             android:background="@android:color/background_light"
-                            android:foregroundGravity="right"
-                            app:srcCompat="@android:drawable/ic_input_add"
                             android:contentDescription="@string/todo"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignEnd="@+id/selectPeople" />
+                            android:foregroundGravity="right"
+                            app:srcCompat="@android:drawable/ic_input_add" />
 
                         <TextView
                             android:id="@+id/travelerNumber"
@@ -155,14 +155,14 @@
 
                         <ImageButton
                             android:id="@+id/subTraveller"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_margin="5dp"
                             android:layout_toLeftOf="@+id/travelerNumber"
+                            android:layout_toStartOf="@+id/travelerNumber"
                             android:background="@android:color/background_light"
-                            app:srcCompat="@android:drawable/ic_input_add"
                             android:contentDescription="@string/todo"
-                            android:layout_toStartOf="@+id/travelerNumber" />
+                            app:srcCompat="@android:drawable/button_onoff_indicator_on" />
 
                         <TextView
                             android:id="@+id/date"
