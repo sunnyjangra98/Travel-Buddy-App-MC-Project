@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,6 +48,14 @@ public class StayItemDetailFragment extends Fragment
         stayPersonText = root.findViewById(R.id.stayBy);
         offerText  = root.findViewById(R.id.stayOffers);
 
+        ratingText.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View view) {
+                                              loadFragment(new StayReviewFragment());
+                                          }
+                                      }
+        );
+
         if(stay != null){
             ratingText.setText(stay.getRatings());
             breifText.setText(stay.getBrief());
@@ -57,6 +66,14 @@ public class StayItemDetailFragment extends Fragment
         }
         //add reviews in new fragment;
         return root;
+    }
+
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, fragment);
+        transaction.addToBackStack("StayItemDetailFragment");
+        transaction.commit();
     }
 
 }
