@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder> {
@@ -49,11 +49,11 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
         Stay stay = stayList.get(position);
 
         //binding the data with the viewholder view
-        holder.imageView.setImageURI(stay.getImage());
         holder.textView_stay.setText(stay.getStay_name());
         holder.textView_person.setText(stay.getStay_person());
         holder.textView_brief.setText(String.valueOf(stay.gethostDate()));
         holder.textView_rating.setText(String.valueOf(stay.getRating()));
+        Glide.with(mCtx).load(stay.getImage()).into(holder.imageView);
 
     }
 

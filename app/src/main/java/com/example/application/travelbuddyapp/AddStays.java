@@ -50,8 +50,12 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
     Stay newStay;
     Uri imageUri;
     View root;
-    static int numberOfTimes = 0;
+    Stay stayFromFB;
+    String fHostName, fStayName, fDate, fStayId, fCity;
+    float fRating;
+    Uri fImage;
     String rHostName, rPlace, rDate, rCity, rStayName;
+    boolean flag = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +70,7 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Stay");
-        storageReference = FirebaseStorage.getInstance().getReference().child("StayImages");
+        storageReference = FirebaseStorage.getInstance().getReference().child("User-Images");
         addStayButton = (FloatingActionButton) root.findViewById(R.id.addStayButton);
         recyclerView = (RecyclerView) root.findViewById(R.id.add_stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
@@ -89,20 +93,15 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                    if (snapshot1.hasChild(firebaseUser.getUid())) {
-                        Log.d("INSIDE", "yay i got this" + snapshot1.getValue().toString());
-                        Stay stayFromFB;
-                        String fHostName, fStayName, fDate, fStayId;
-                        float fRating;
-                        Uri fImage;
-                        fHostName = snapshot1.child(firebaseUser.getUid()).child("stay_person").getValue().toString();
-                        fStayName = snapshot1.child(firebaseUser.getUid()).child("stay_name").getValue().toString();
-                        fDate = snapshot1.child(firebaseUser.getUid()).child("hostDate").getValue().toString();
-                        fRating = (long) snapshot1.child(firebaseUser.getUid()).child("rating").getValue();
-                        fStayId = snapshot1.child(firebaseUser.getUid()).child("stay_id").getValue().toString();
-                        String fNewImage = snapshot1.child(firebaseUser.getUid()).child("image").getValue().toString();
-                        fImage = Uri.parse(fNewImage);
-                        Log.d("TAG", "imageUri:" + fImage.toString());
+                    Log.d("TAG", "HELL NO" + snapshot1.getValue().toString());
+                    if (snapshot1.child("stay_id").getValue().toString().equals(firebaseUser.getUid())) {
+                        fHostName = snapshot1.child("stay_person").getValue().toString();
+                        fStayName = snapshot1.child("stay_name").getValue().toString();
+                        fDate = snapshot1.child("hostDate").getValue().toString();
+                        fRating = (long) snapshot1.child("rating").getValue();
+                        fStayId = snapshot1.child("stay_id").getValue().toString();
+                        fCity = snapshot1.child("city").getValue().toString();
+                        fImage = Uri.parse(snapshot1.child("image").getValue().toString());
                         stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate);
                         addStayList.add(stayFromFB);
                         furtherAction(root);
@@ -130,21 +129,6 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
 
             }
         });
-
-//        if (numberOfTimes == 0) {
-//            numberOfTimes++;
-//            databaseReference.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                }
-//            });
-//        }
 
         furtherAction(root);
 
@@ -176,27 +160,16 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
         rHostName = hostName;
         rPlace = Place;
         rDate = Date;
-        rCity = City;
-        StorageReference sRef = storageReference.child(firebaseUser.getUid());
-        newStay = new Stay(firebaseUser.getUid(), imageUri, rStayName, rHostName, 0, rDate);
-        sRef.putFile(imageUri);
-        Log.d("TAG", "imageUri:" + imageUri.toString());
+        rCity = City;;
 
-        sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                databaseReference.child(rCity).child(firebaseUser.getUid()).child("image").setValue(uri.toString());
-            }
-        });
-
-        addStayList.add(newStay);
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("hostDate").setValue(rDate);
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("rating").setValue(0);
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_id").setValue(firebaseUser.getUid());
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_person").setValue(rHostName);
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(rStayName);
-        numberOfTimes++;
-        furtherAction(root);
+        databaseReference.child(rCity).child(firebaseUser.getUid()).child("city").setValue(rCity);
+        databaseReference.child(rCity).child(firebaseUser.getUid()).child("image").setValue("");
+//        furtherAction(root);
     }
 
     private void loadFragment(Fragment fragment) {
