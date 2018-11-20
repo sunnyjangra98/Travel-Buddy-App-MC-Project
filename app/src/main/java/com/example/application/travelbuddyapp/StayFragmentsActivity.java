@@ -17,12 +17,7 @@ public class StayFragmentsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stay_fragments);
-
-
         }
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -34,7 +29,6 @@ public class StayFragmentsActivity extends AppCompatActivity {
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame, new searchStayFragment());
             transaction.commit();
-
         }
     }
 }

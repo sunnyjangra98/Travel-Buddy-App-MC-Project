@@ -51,8 +51,7 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
     Uri imageUri;
     View root;
     Stay stayFromFB;
-    String fHostName, fStayName, fDate, fStayId, fCity;
-    float fRating;
+    String fHostName, fStayName, fDate, fStayId, fCity, fRating;
     Uri fImage;
     String rHostName, rPlace, rDate, rCity, rStayName;
     boolean flag = true;
@@ -98,7 +97,7 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
                         fHostName = snapshot1.child("stay_person").getValue().toString();
                         fStayName = snapshot1.child("stay_name").getValue().toString();
                         fDate = snapshot1.child("hostDate").getValue().toString();
-                        fRating = (long) snapshot1.child("rating").getValue();
+                        fRating = snapshot1.child("rating").getValue().toString();
                         fStayId = snapshot1.child("stay_id").getValue().toString();
                         fCity = snapshot1.child("city").getValue().toString();
                         fImage = Uri.parse(snapshot1.child("image").getValue().toString());
@@ -160,10 +159,10 @@ public class AddStays extends Fragment implements StayDialog.StayDialogListener 
         rHostName = hostName;
         rPlace = Place;
         rDate = Date;
-        rCity = City;;
+        rCity = City;
 
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("hostDate").setValue(rDate);
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("rating").setValue(0);
+        databaseReference.child(rCity).child(firebaseUser.getUid()).child("rating").setValue("0");
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_id").setValue(firebaseUser.getUid());
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_person").setValue(rHostName);
         databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(rStayName);

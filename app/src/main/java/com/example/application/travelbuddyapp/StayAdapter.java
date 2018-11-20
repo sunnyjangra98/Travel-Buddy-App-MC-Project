@@ -51,7 +51,7 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
         //binding the data with the viewholder view
         holder.textView_stay.setText(stay.getStay_name());
         holder.textView_person.setText(stay.getStay_person());
-        holder.textView_brief.setText(String.valueOf(stay.gethostDate()));
+        holder.textView_brief.setText(String.valueOf(stay.getHostDate()));
         holder.textView_rating.setText(String.valueOf(stay.getRating()));
         Glide.with(mCtx).load(stay.getImage()).into(holder.imageView);
 
@@ -73,7 +73,7 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
 
             textView_stay = itemView.findViewById(R.id.textView_stay);
             textView_person = itemView.findViewById(R.id.textView_person);
-            textView_brief = itemView.findViewById(R.id.stay_brief);
+            textView_brief = itemView.findViewById(R.id.stay_date);
             textView_rating = itemView.findViewById(R.id.rating_text);
             imageView = itemView.findViewById(R.id.imageView);
 

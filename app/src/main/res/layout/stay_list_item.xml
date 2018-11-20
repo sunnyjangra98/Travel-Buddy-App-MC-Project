@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/defaulthouse" />
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:id="@+id/call_button"
@@ -113,13 +113,13 @@
                 android:layout_alignParentEnd="true" />
 
             <TextView
-                android:id="@+id/stay_brief"
+                android:id="@+id/stay_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_person"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/other_short_breif" />
+                android:text="Dates Available" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
