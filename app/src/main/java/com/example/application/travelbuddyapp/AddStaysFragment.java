@@ -51,8 +51,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     Uri imageUri;
     View root;
     Stay stayFromFB;
-    String fHostName, fStayName, fDate, fStayId, fCity, fRating;
-    Uri fImage;
+    String fHostName, fStayName, fDate, fStayId, fCity, fRating, fImage;
     String rHostName, rPlace, rDate, rCity, rStayName;
     boolean flag = true;
 
@@ -100,7 +99,8 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                         fRating = snapshot1.child("rating").getValue().toString();
                         fStayId = snapshot1.child("stay_id").getValue().toString();
                         fCity = snapshot1.child("city").getValue().toString();
-                        fImage = Uri.parse(snapshot1.child("image").getValue().toString());
+                        //fImage = Uri.parse(snapshot1.child("image").getValue().toString());
+                        fImage = snapshot1.child("image").getValue().toString();
                         stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate);
                         addStayList.add(stayFromFB);
                         furtherAction(root);

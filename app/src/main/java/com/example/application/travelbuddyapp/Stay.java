@@ -19,7 +19,7 @@ public class Stay implements Serializable{
 
     public String rating;
     public String brief;
-    public Uri image;
+    public String image;
     public String stay_name;
     public String stay_person;
     public String stay_id;
@@ -46,12 +46,12 @@ public class Stay implements Serializable{
     public String getRatings(){
         return this.rating;
     }
-
+//
     /*
         private String hostDate;
         public String getHostDate() {
             return hostDate;
-        }
+
         public void setHostDate(String hostDate) {
             this.hostDate = hostDate;
         }
@@ -76,7 +76,11 @@ public class Stay implements Serializable{
         this.stay_person = stay_person;
     }
 
-    public Stay(String stay_id, Uri image, String stay_name, String stay_person, String rating, String hostDate) {
+    public Stay(){
+        
+    }
+
+    public Stay(String stay_id, String image, String stay_name, String stay_person, String rating, String hostDate) {
         this.stay_id = stay_id;
         this.image = image;
         this.stay_name = stay_name;
@@ -108,7 +112,7 @@ public class Stay implements Serializable{
     public String getBrief() {
         return brief;
     }
-    public Uri getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -118,7 +122,7 @@ public class Stay implements Serializable{
     public void setRating(String rating) {
         this.rating = rating;
     }
-    public void setImage(Uri image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
