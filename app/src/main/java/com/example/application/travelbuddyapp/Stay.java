@@ -77,7 +77,7 @@ public class Stay implements Serializable{
     }
 
     public Stay(){
-        
+
     }
 
     public Stay(String stay_id, String image, String stay_name, String stay_person, String rating, String hostDate) {
