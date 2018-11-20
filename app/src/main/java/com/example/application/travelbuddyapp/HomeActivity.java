@@ -54,8 +54,9 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.navigation_account:
                     loadFragment(new AccountFragment());
                     return true;
+
             }
-            return false;
+            return true;
         }
     };
 
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        loadFragment(new WelcomeFragment() );
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setScrollbarFadingEnabled(true);
@@ -112,7 +113,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
+
     }
+
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +21,7 @@ public class AccountFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
-    Button EditProfile, MyPlaces, AddStay, SignOut;
+    TextView EditProfile, StayRequests, RequestedStays, AddStay, SignOut;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,29 +36,46 @@ public class AccountFragment extends Fragment {
         firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
 
-        EditProfile = (Button) root.findViewById(R.id.editProfile);
-        MyPlaces = (Button) root.findViewById(R.id.myPlaces);
-        AddStay = (Button) root.findViewById(R.id.addStay);
-        SignOut = (Button) root.findViewById(R.id.signOut);
+        EditProfile =  root.findViewById(R.id.editProfile);
+        StayRequests =  root.findViewById(R.id.stayRequests);
+        RequestedStays = root.findViewById(R.id.requestedStays);
+        AddStay =  root.findViewById(R.id.addStay);
+        SignOut =  root.findViewById(R.id.signOut);
 
         EditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new EditProfile());
+                Intent i =new Intent(getActivity().getApplicationContext(), AccountActivity.class);
+                i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.EDIT_PROFILE_FRAGMENT_NAME);
+                getActivity().startActivity(i);
+
             }
         });
 
-        MyPlaces.setOnClickListener(new View.OnClickListener() {
+        StayRequests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new MyPlaces());
+                Intent i =new Intent(getActivity().getApplicationContext(), AccountActivity.class);
+                i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.STAY_REQUESTS_FRAGMENT_NAME);
+                startActivity(i);
             }
         });
 
+        RequestedStays.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getActivity().getApplicationContext(), AccountActivity.class);
+                i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.REQUESTED_STAY_FRAGMENT_NAME);
+                startActivity(i);
+            }
+        });
         AddStay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new AddStays());
+                Intent i =new Intent(getActivity().getApplicationContext(), AccountActivity.class);
+                i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.ADD_STAY_FRAGMENT_NAME);
+                getActivity().startActivity(i);
+               // loadFragment(new AddStaysFragment());
             }
         });
 
@@ -68,7 +86,7 @@ public class AccountFragment extends Fragment {
                 Toast.makeText(getActivity().getApplicationContext(), "Logout successful", Toast.LENGTH_LONG).show();
                 getActivity().finish();
                 Intent toLogin = new Intent(getActivity().getApplicationContext(), LoginSignupActivity.class);
-                startActivity(toLogin);
+                getActivity().startActivity(toLogin);
 //                sp.edit().putBoolean("logged",false).apply();
 //                sp.edit().putString("User","").apply();
 //                sp.edit().putString("password","").apply();
@@ -78,11 +96,4 @@ public class AccountFragment extends Fragment {
         return root;
     }
 
-    private void loadFragment(Fragment fragment) {
-        // load fragment
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, fragment);
-        //transaction.addToBackStack(null);
-        transaction.commit();
-    }
 }

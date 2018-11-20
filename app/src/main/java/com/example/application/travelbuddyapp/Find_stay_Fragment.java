@@ -107,10 +107,6 @@ public class Find_stay_Fragment extends Fragment {
                 String date = stay.getHostDate();
 
                 final ArrayList<Reviews> reviews = new ArrayList<>();
-                String details = stay.getDetails();
-                String max_people = stay.getMax_people();
-                String interests = stay.getInterests();
-                String things_to_offer = stay.getThings_to_offer();
 
                 Log.d("KEY","ID ID "+stay_id);
                 /*
@@ -151,28 +147,20 @@ public class Find_stay_Fragment extends Fragment {
                 holder.textView_date.setText(date);
                 Glide.with(getActivity()).load(stay.getImage()).into(holder.imageView);
 
-                final StayItemDetail stay_detail = new StayItemDetail();
-                Bundle bunfrag = new Bundle();
-                bunfrag.putString("details",details);
-                bunfrag.putString("max_people",max_people);
-                bunfrag.putString("interests",interests);
-                bunfrag.putString("things_to_offer",things_to_offer);
-                //bunfrag.putParcelableArrayList("reviews",reviews);
-                stay_detail.setArguments(bunfrag);
+                final StayItemDetailFragment stay_detail = new StayItemDetailFragment();
+                final Bundle bunfrag = new Bundle();
+                bunfrag.putSerializable(StayFragmentsActivity.STAY_FOR_DETAIL, stay );
 
-                /*
-                holder.textView_stay.setText(stay.getStay_name());
-                holder.textView_person.setText(stay.getStay_person());
-                holder.textView_rating.setText(String.valueOf(stay.getRating()));
-                holder.textView_brief.setText(stay.getBrief());
-                Glide.with(getActivity()).load(stay.getImage()).into(holder.imageView);
-                */
                 holder.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        loadFragment(stay_detail);
+                        Intent i =new Intent(getActivity(), StayFragmentsActivity.class);
+                        i.putExtra(StayFragmentsActivity.FRAGMENT_NAME, StayFragmentsActivity.DETAIL_FRAGMENT_NAME);
+                        i.putExtra(StayFragmentsActivity.STAY_FOR_DETAIL_BUNDLE, bunfrag );//bunfrag define 4 lines above this line
+                        startActivityForResult(i, DISPLAY_REQUEST_CODE);
                     }
                 });
+
             }
             @Override
             public StayViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {

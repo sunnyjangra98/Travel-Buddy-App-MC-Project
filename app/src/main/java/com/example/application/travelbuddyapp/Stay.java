@@ -41,6 +41,9 @@ public class Stay implements Serializable{
     public void setHostDate(String hostDate) {
         this.hostDate = hostDate;
     }
+    public String getRatings(){
+        return this.rating;
+    }
 
     /*
         private String hostDate;

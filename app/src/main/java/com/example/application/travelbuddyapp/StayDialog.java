@@ -83,7 +83,7 @@ public class StayDialog extends AppCompatDialogFragment {
                 }
                 else
                 {
-                    listner.sendBackToFragment(hostName, place, date, city);
+                    //listner.sendBackToFragment(hostName, place, date, city);
                     listner.sendBackToFragment(stayName, hostName, place, date, city);
                     getDialog().dismiss();
                 }
@@ -103,7 +103,7 @@ public class StayDialog extends AppCompatDialogFragment {
     }
 
     public interface StayDialogListener{
-        void sendBackToFragment(String hostName, String Place, String Date, String City);
+       // void sendBackToFragment(String hostName, String Place, String Date, String City);
         void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City);
     }
 }

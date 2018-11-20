@@ -24,7 +24,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AddStays extends Fragment implements StayDialog.StayDialogListener {
+public  class AddStaysFragment extends Fragment implements StayDialog.StayDialogListener {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
@@ -122,7 +122,7 @@ public abstract class AddStays extends Fragment implements StayDialog.StayDialog
     }
     public void openDialog(){
         StayDialog stayDialog = new StayDialog();
-        stayDialog.setTargetFragment(AddStays.this, 1);
+        stayDialog.setTargetFragment(AddStaysFragment.this, 1);
         stayDialog.show(getFragmentManager(), "AddStayFragment");
     }
 

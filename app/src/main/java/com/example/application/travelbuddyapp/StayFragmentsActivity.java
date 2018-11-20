@@ -11,6 +11,8 @@ public class StayFragmentsActivity extends AppCompatActivity {
     public static String FRAGMENT_NAME="FRAGMENT_NAME";
     public static String SEARCH_FRAGMENT_NAME="SEARCH";
     public static String DETAIL_FRAGMENT_NAME="DETAIL";
+    public static String STAY_FOR_DETAIL = "STAY_FOR_DETAIL";
+    public static String STAY_FOR_DETAIL_BUNDLE = "STAY_FOR_DETAIL_BUNDLE";
     FrameLayout frame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,15 @@ public class StayFragmentsActivity extends AppCompatActivity {
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame, new searchStayFragment());
             transaction.commit();
+        }
+        else if(fragmentName.equals(DETAIL_FRAGMENT_NAME)){
+            Bundle DetailBundle = extra.getBundle(STAY_FOR_DETAIL_BUNDLE);
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            StayItemDetailFragment stayItemDetail = new StayItemDetailFragment();
+            stayItemDetail.setArguments(DetailBundle);
+            transaction.replace(R.id.frame, stayItemDetail);
+            transaction.commit();
+
         }
     }
 }
