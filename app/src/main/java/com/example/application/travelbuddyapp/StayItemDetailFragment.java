@@ -49,12 +49,11 @@ public class StayItemDetailFragment extends Fragment
         offerText  = root.findViewById(R.id.stayOffers);
 
         ratingText.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View view) {
-                                              loadFragment(new StayReviewFragment());
-                                          }
-                                      }
-        );
+            @Override
+            public void onClick(View view) {
+                loadFragment(new StayReviewFragment());
+            }
+        });
 
         if(stay != null){
             ratingText.setText(stay.getRatings());

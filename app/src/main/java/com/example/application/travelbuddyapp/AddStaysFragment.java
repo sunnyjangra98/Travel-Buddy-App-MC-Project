@@ -99,7 +99,6 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                         fRating = snapshot1.child("rating").getValue().toString();
                         fStayId = snapshot1.child("stay_id").getValue().toString();
                         fCity = snapshot1.child("city").getValue().toString();
-                        //fImage = Uri.parse(snapshot1.child("image").getValue().toString());
                         fImage = snapshot1.child("image").getValue().toString();
                         stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate);
                         addStayList.add(stayFromFB);
@@ -161,14 +160,42 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
         rDate = Date;
         rCity = City;
 
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("hostDate").setValue(rDate);
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("rating").setValue("0");
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_id").setValue(firebaseUser.getUid());
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_person").setValue(rHostName);
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(rStayName);
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("city").setValue(rCity);
-        databaseReference.child(rCity).child(firebaseUser.getUid()).child("image").setValue("");
-//        furtherAction(root);
+        //Checking
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long getChildrenCount = 0;
+                if (dataSnapshot.hasChild(rCity)){
+                    getChildrenCount = dataSnapshot.getChildrenCount();
+                    Log.d("TAG HAI BAS", "Children count inside:" + getChildrenCount);
+                }
+                else getChildrenCount = 0;
+                Log.d("TAG HAI BAS", "Children count outside:" + getChildrenCount);
+                String addingChild = "User" + (getChildrenCount+1);
+                databaseReference.child(rCity).child(addingChild).child("stay_id").setValue(firebaseUser.getUid());
+                databaseReference.child(rCity).child(addingChild).child("stay_person").setValue(rHostName);
+                databaseReference.child(rCity).child(addingChild).child("stay_name").setValue(rStayName);
+                databaseReference.child(rCity).child(addingChild).child("hostDate").setValue(rDate);
+                databaseReference.child(rCity).child(addingChild).child("rating").setValue("0");
+                databaseReference.child(rCity).child(addingChild).child("city").setValue(rCity);
+                databaseReference.child(rCity).child(addingChild).child("image").setValue("");
+                databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(addingChild);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //Till here
+
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_id").setValue(firebaseUser.getUid());
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_person").setValue(rHostName);
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(rStayName);
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("hostDate").setValue(rDate);
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("rating").setValue("0");
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("city").setValue(rCity);
+//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("image").setValue("");
     }
 
     private void loadFragment(Fragment fragment) {
