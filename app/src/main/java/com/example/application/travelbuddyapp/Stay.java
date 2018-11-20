@@ -1,4 +1,3 @@
-
 package com.example.application.travelbuddyapp;
 
 import android.net.Uri;
@@ -27,7 +26,7 @@ public class Stay implements Serializable{
     public String interests;
     public String max_people;
     public String things_to_offer;
-    public String hostDate;
+    public String hostDate, city;
 
     public String getDetails() { return details; }
     public void setDetails(String details) { this.details = details; }
@@ -45,6 +44,9 @@ public class Stay implements Serializable{
     }
     public String getRatings(){
         return this.rating;
+    }
+    public String getCity() {
+        return city;
     }
 //
     /*
@@ -75,18 +77,22 @@ public class Stay implements Serializable{
     public void setStay_person(String stay_person) {
         this.stay_person = stay_person;
     }
+    public void setCity(String city){
+        this.city = city;
+    }
 
     public Stay(){
 
     }
 
-    public Stay(String stay_id, String image, String stay_name, String stay_person, String rating, String hostDate) {
+    public Stay(String stay_id, String image, String stay_name, String stay_person, String rating, String hostDate, String city) {
         this.stay_id = stay_id;
         this.image = image;
         this.stay_name = stay_name;
         this.stay_person = stay_person;
         this.rating = rating;
         this.hostDate = hostDate;
+        this.city = city;
     }
 
     /*

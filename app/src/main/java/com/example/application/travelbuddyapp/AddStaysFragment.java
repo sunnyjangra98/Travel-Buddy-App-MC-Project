@@ -53,7 +53,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     Stay stayFromFB;
     String fHostName, fStayName, fDate, fStayId, fCity, fRating, fImage;
     String rHostName, rPlace, rDate, rCity, rStayName;
-    boolean flag = true;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
                     Log.d("TAG", "HELL NO" + snapshot1.getValue().toString());
-                    if (snapshot1.child("stay_id").getValue().toString().equals(firebaseUser.getUid())) {
+                    if (snapshot1.child("unique_id").getValue().toString().equals(firebaseUser.getUid())) {
                         fHostName = snapshot1.child("stay_person").getValue().toString();
                         fStayName = snapshot1.child("stay_name").getValue().toString();
                         fDate = snapshot1.child("hostDate").getValue().toString();
@@ -100,7 +100,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                         fStayId = snapshot1.child("stay_id").getValue().toString();
                         fCity = snapshot1.child("city").getValue().toString();
                         fImage = snapshot1.child("image").getValue().toString();
-                        stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate);
+                        stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate, fCity);
                         addStayList.add(stayFromFB);
                         furtherAction(root);
                     }
@@ -172,14 +172,14 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                 else getChildrenCount = 0;
                 Log.d("TAG HAI BAS", "Children count outside:" + getChildrenCount);
                 String addingChild = "User" + (getChildrenCount+1);
-                databaseReference.child(rCity).child(addingChild).child("stay_id").setValue(firebaseUser.getUid());
+                databaseReference.child(rCity).child(addingChild).child("stay_id").setValue(addingChild);
                 databaseReference.child(rCity).child(addingChild).child("stay_person").setValue(rHostName);
                 databaseReference.child(rCity).child(addingChild).child("stay_name").setValue(rStayName);
                 databaseReference.child(rCity).child(addingChild).child("hostDate").setValue(rDate);
                 databaseReference.child(rCity).child(addingChild).child("rating").setValue("0");
                 databaseReference.child(rCity).child(addingChild).child("city").setValue(rCity);
                 databaseReference.child(rCity).child(addingChild).child("image").setValue("");
-                databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(addingChild);
+                databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
             }
 
             @Override

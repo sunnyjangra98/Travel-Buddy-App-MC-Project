@@ -39,9 +39,9 @@ public class AccountActivity  extends AppCompatActivity  {
         }
         else if(fragmentName.equals(STAY_REQUESTS_FRAGMENT_NAME)){
 
-            //android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            //transaction.replace(R.id.frame2, new StayRequestsFragment());
-            //transaction.commit();
+//            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.frame2, new StayRequestsFragment());
+//            transaction.commit();
 
         }
         else if(fragmentName.equals(REQUESTED_STAY_FRAGMENT_NAME)){
