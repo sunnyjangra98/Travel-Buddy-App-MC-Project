@@ -1,6 +1,8 @@
 
 package com.example.application.travelbuddyapp;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 
 public class Stay implements Serializable{
@@ -17,7 +19,7 @@ public class Stay implements Serializable{
 
     public String rating;
     public String brief;
-    public String image;
+    public Uri image;
     public String stay_name;
     public String stay_person;
     public String stay_id;
@@ -74,6 +76,15 @@ public class Stay implements Serializable{
         this.stay_person = stay_person;
     }
 
+    public Stay(String stay_id, Uri image, String stay_name, String stay_person, String rating, String hostDate) {
+        this.stay_id = stay_id;
+        this.image = image;
+        this.stay_name = stay_name;
+        this.stay_person = stay_person;
+        this.rating = rating;
+        this.hostDate = hostDate;
+    }
+
     /*
     public Stay(int stay_id, String image, String stay_name, String stay_person, String rating, String brief) {
         this.stay_id = stay_id;
@@ -97,7 +108,7 @@ public class Stay implements Serializable{
     public String getBrief() {
         return brief;
     }
-    public String getImage() {
+    public Uri getImage() {
         return image;
     }
 
@@ -107,7 +118,7 @@ public class Stay implements Serializable{
     public void setRating(String rating) {
         this.rating = rating;
     }
-    public void setImage(String image) {
+    public void setImage(Uri image) {
         this.image = image;
     }
 }

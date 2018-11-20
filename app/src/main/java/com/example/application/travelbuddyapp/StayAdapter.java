@@ -8,13 +8,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import java.util.List;
 
-public class StayAdapter {
-/*
-=======
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
 public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder> {
 
 
@@ -53,15 +49,11 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
         Stay stay = stayList.get(position);
 
         //binding the data with the viewholder view
-<<<<<<< HEAD
-        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(stay.getImage()));
-=======
-        holder.imageView.setImageURI(stay.getImage());
->>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
         holder.textView_stay.setText(stay.getStay_name());
         holder.textView_person.setText(stay.getStay_person());
-        holder.textView_brief.setText(String.valueOf(stay.gethostDate()));
+        holder.textView_brief.setText(String.valueOf(stay.getHostDate()));
         holder.textView_rating.setText(String.valueOf(stay.getRating()));
+        Glide.with(mCtx).load(stay.getImage()).into(holder.imageView);
 
     }
 
@@ -81,7 +73,7 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
 
             textView_stay = itemView.findViewById(R.id.textView_stay);
             textView_person = itemView.findViewById(R.id.textView_person);
-            textView_brief = itemView.findViewById(R.id.stay_brief);
+            textView_brief = itemView.findViewById(R.id.stay_date);
             textView_rating = itemView.findViewById(R.id.rating_text);
             imageView = itemView.findViewById(R.id.imageView);
 
@@ -99,6 +91,4 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
 
         }
     }
-<<<<<<< HEAD
-    */
 }
