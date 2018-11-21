@@ -140,6 +140,8 @@ public class StayItemDetailFragment extends Fragment {
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("status").setValue("0");
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("dateToStay").setValue(dateShow.getText().toString());
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("NumberOfTraveller").setValue(travellerNumber.getText().toString());
+
+                    databaseReference.child("requestedStay").child(stay.getCity()).child(stay.getStay_id()).child("status").setValue("0");
                     Toast.makeText(getContext(), "Request Sent \nStatus: Pending", Toast.LENGTH_SHORT).show();
                 }
             }
