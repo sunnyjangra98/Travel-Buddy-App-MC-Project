@@ -27,10 +27,7 @@ public class Stay implements Serializable{
     public String max_people;
     public String things_to_offer;
     public String hostDate, city;
-<<<<<<< HEAD
     String unique_id;
-=======
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
 
     public String getDetails() { return details; }
     public void setDetails(String details) { this.details = details; }

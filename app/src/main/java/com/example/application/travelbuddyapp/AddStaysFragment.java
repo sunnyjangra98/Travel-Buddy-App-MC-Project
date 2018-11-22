@@ -58,10 +58,6 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-=======
-
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
     }
 
     @Override
@@ -105,7 +101,6 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                         fImage = snapshot1.child("image").getValue().toString();
                         stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate, fCity);
                         addStayList.add(stayFromFB);
-<<<<<<< HEAD
                         //furtherAction(root);
                     }
                 }
@@ -116,43 +111,12 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
             @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
         furtherAction(root);
-=======
-                        furtherAction(root);
-                    }
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        furtherAction(root);
-
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
         return root;
     }
 
     public void furtherAction(View root){
         adapter = new StayAdapter(root.getContext(), addStayList);
         recyclerView.setAdapter(adapter);
-<<<<<<< HEAD
         adapter.setOnItemClickListner(new StayAdapter.OnItemClickListner() {
             @Override
             public void onItemClick(int position) {
@@ -196,16 +160,6 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
             @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
         return requests;
-=======
-
-        adapter.setOnItemClickListner(new StayAdapter.OnItemClickListner() {
-            @Override
-            public void onItemClick(int position) {
-                addStayList.get(position);
-                loadFragment(new StayCardOpen());
-            }
-        });
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
     }
 
     public void openDialog(){
@@ -246,17 +200,8 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-<<<<<<< HEAD
             }
         });
-        //Till here
-=======
-
-            }
-        });
-        //Till here
-
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
 //        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_id").setValue(firebaseUser.getUid());
 //        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_person").setValue(rHostName);
 //        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(rStayName);
@@ -269,13 +214,8 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-<<<<<<< HEAD
         transaction.replace(R.id.frame2, fragment);
         transaction.addToBackStack(null);
-=======
-        transaction.replace(R.id.frame, fragment);
-        //transaction.addToBackStack(null);
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
         transaction.commit();
     }
 }

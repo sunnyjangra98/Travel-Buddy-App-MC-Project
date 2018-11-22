@@ -79,7 +79,6 @@ public class StayItemDetailFragment extends Fragment {
         if (not == 1)
             travellerSub.setClickable(false);
 
-<<<<<<< HEAD
         if(stay != null){
             ratingText.setText(stay.getRatings());
             breifText.setText(stay.getBrief());
@@ -88,9 +87,6 @@ public class StayItemDetailFragment extends Fragment {
             offerText.setText(stay.getThings_to_offer());
             Glide.with(getActivity()).load(stay.getImage()).into(this.stayImage);
         }
-
-=======
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
         travellerSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,17 +146,12 @@ public class StayItemDetailFragment extends Fragment {
                     Toast.makeText(getContext(), "Please choose date to stay", Toast.LENGTH_SHORT).show();
                 else {
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("status").setValue("0");
-<<<<<<< HEAD
                     //databaseReference1.child("requests").child(firebaseUser.getUid()).child("username").setValue(stayPersonText);
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("user_id").setValue(firebaseUser.getUid());
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("dateToStay").setValue(dateShow.getText().toString());
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("NumberOfTraveller").setValue(travellerNumber.getText().toString());
-=======
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("dateToStay").setValue(dateShow.getText().toString());
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("NumberOfTraveller").setValue(travellerNumber.getText().toString());
 
                     databaseReference.child("requestedStay").child(stay.getCity()).child(stay.getStay_id()).child("status").setValue("0");
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
                     Toast.makeText(getContext(), "Request Sent \nStatus: Pending", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -173,33 +164,13 @@ public class StayItemDetailFragment extends Fragment {
             }
         });
 
-<<<<<<< HEAD
         return root;
     }
 
-=======
-        if(stay != null){
-            ratingText.setText(stay.getRatings());
-            breifText.setText(stay.getBrief());
-            stayNameText.setText(stay.getStay_name());
-            stayPersonText.setText(stay.getStay_person());
-            offerText.setText(stay.getThings_to_offer());
-            Glide.with(getActivity()).load(stay.getImage()).into(this.stayImage);
-        }
-
-        return root;
-    }
-
-
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, fragment);
         transaction.addToBackStack("StayItemDetailFragment");
         transaction.commit();
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
 }

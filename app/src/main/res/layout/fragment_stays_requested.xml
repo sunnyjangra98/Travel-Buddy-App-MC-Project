@@ -2,7 +2,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-<<<<<<< HEAD
     android:layout_height="wrap_content"
     tools:context=".StaysRequestedFragment">
 
@@ -22,15 +21,4 @@
             android:scrollbars="vertical" />
 
     </LinearLayout>
-=======
-    android:layout_height="match_parent"
-    tools:context=".StaysRequestedFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
->>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
 </FrameLayout>
