@@ -48,14 +48,12 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
     public void onBindViewHolder(StayViewHolder holder, int position) {
         //getting the product of the specified position
         Stay stay = stayList.get(position);
-
         //binding the data with the viewholder view
         holder.textView_stay.setText(stay.getStay_name());
         holder.textView_person.setText(stay.getStay_person());
         holder.textView_brief.setText(String.valueOf(stay.getHostDate()));
         holder.textView_rating.setText(String.valueOf(stay.getRating()));
         Glide.with(mCtx).load(stay.getImage()).into(holder.imageView);
-
     }
 
     @Override
@@ -89,7 +87,6 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
                     }
                 }
             });
-
         }
     }
 }
