@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="5dp"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/reviewByPersonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_toLeftOf="@+id/ratingStars"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/reviewDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_below="@+id/nameText"
+                android:layout_margin="5dp"
+                android:text="TextView"
+                android:textSize="18sp" />
+
+            <RatingBar
+                android:id="@+id/ratingStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:numStars="1" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/search_button_bg"
+        android:fadingEdge="horizontal"
+        android:gravity="fill_vertical|start"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/search_for_stay_here"
+        android:textAllCaps="false"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/stay_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
