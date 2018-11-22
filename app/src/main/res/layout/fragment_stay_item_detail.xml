@@ -5,7 +5,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="match_parent">
+=======
+        android:layout_height="match_parent"
+        >
+>>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
 
             <LinearLayout
                 android:layout_width="match_parent"

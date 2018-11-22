@@ -14,6 +14,10 @@ public class AccountActivity  extends AppCompatActivity  {
     FrameLayout frame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
     }
@@ -30,13 +34,20 @@ public class AccountActivity  extends AppCompatActivity  {
             transaction.commit();
         }
         else if(fragmentName.equals(ADD_STAY_FRAGMENT_NAME)){
+<<<<<<< HEAD
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, new AddStaysFragment());
             //transaction.addToBackStack(null);
+=======
+
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame2, new AddStaysFragment());
+>>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
             transaction.commit();
 
         }
         else if(fragmentName.equals(STAY_REQUESTS_FRAGMENT_NAME)){
+<<<<<<< HEAD
             /*
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, new StayRequestsFragment());
@@ -49,6 +60,18 @@ public class AccountActivity  extends AppCompatActivity  {
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, new StaysRequestedFragment());
             //transaction.addToBackStack(null);
+=======
+
+//            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.frame2, new StayRequestsFragment());
+//            transaction.commit();
+
+        }
+        else if(fragmentName.equals(REQUESTED_STAY_FRAGMENT_NAME)){
+
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame2, new StaysRequestedFragment());
+>>>>>>> 5bf9534eddc3ef617fb6f4d75ee5d8a2d4354e82
             transaction.commit();
 
         }
