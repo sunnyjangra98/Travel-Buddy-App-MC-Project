@@ -1,7 +1,9 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -151,6 +155,23 @@ public class Find_stay_Fragment extends Fragment {
                 final Bundle bunfrag = new Bundle();
                 bunfrag.putSerializable(StayFragmentsActivity.STAY_FOR_DETAIL, stay );
 
+                holder.callButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String phoneNumber = "tel:"+"9717439438";
+                        Uri number = Uri.parse(phoneNumber);
+                        Log.i("phone call", "onClick: Phone call");
+
+                        Intent callIntent = new Intent(Intent.ACTION_CALL, number);
+
+                        if (ActivityCompat.checkSelfPermission( getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                            Log.i("phone call", "onClick: Phone call true");
+                            startActivity(callIntent);
+                        }
+
+
+                    }
+                });
                 holder.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -214,12 +235,14 @@ public class Find_stay_Fragment extends Fragment {
 
     class StayViewHolder extends RecyclerView.ViewHolder {
         TextView textView_person, textView_stay, textView_date, textView_rating;
+        ImageButton callButton;
         ImageView imageView;
         public StayViewHolder(View itemView) {
             super(itemView);
             textView_stay =itemView.findViewById(R.id.textView_stay);
             textView_person =itemView.findViewById(R.id.textView_person);
             textView_date = itemView.findViewById(R.id.stay_date);
+            callButton = itemView.findViewById(R.id.call_button);
             textView_rating = itemView.findViewById(R.id.rating_text);
             imageView = itemView.findViewById(R.id.imageView);
         }
