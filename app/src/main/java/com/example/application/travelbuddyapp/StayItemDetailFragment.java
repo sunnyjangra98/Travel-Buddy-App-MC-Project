@@ -147,6 +147,8 @@ public class StayItemDetailFragment extends Fragment {
                 else {
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("status").setValue("0");
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("username").setValue(stay.getStay_person());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("status").setValue("0");
+                    //databaseReference1.child("requests").child(firebaseUser.getUid()).child("username").setValue(stayPersonText);
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("user_id").setValue(firebaseUser.getUid());
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("stay_city").setValue(stay.getCity());
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("requested_stay_id").setValue(stay.getStay_id());

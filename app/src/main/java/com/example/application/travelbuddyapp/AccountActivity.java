@@ -73,6 +73,9 @@ public class AccountActivity  extends AppCompatActivity  {
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, your_stay_requests);
             transaction.commit();
+//            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.frame2, new StaysRequestedFragment());
+//            transaction.commit();
         }
     }
 
