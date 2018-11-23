@@ -3,12 +3,14 @@ package com.example.application.travelbuddyapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -79,7 +81,6 @@ public class AccountActivity  extends AppCompatActivity  {
         }
     }
 
-    String city ;
     ArrayList<Requested_Stay> your_requests;
 
     public ArrayList<Requested_Stay> getRequest()
@@ -88,40 +89,26 @@ public class AccountActivity  extends AppCompatActivity  {
         firebaseUser = firebaseAuth.getCurrentUser();
         your_requests = new ArrayList<Requested_Stay>();
         DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("requestedStay");
-        requestRef.addValueEventListener(new ValueEventListener() {
+        requestRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for ( DataSnapshot data : dataSnapshot.getChildren() )
-                {
-                    String key = data.getKey();
-                    //Log.d("TAH","INVALUES "+key);
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    for (DataSnapshot data1 : data.getChildren()){
+                        Requested_Stay r = new Requested_Stay();
+                        r.requested_city = data.getKey();
+                        r.requested_status = data1.child("status").getValue().toString();
+                        r.requested_stay_name = data1.getKey();
+                        your_requests.add(r);
+                    }
                 }
             }
-            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
         return your_requests;
-        /*
-                            city = data.getKey().toString();
-                    DatabaseReference Ref1 = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("requestedStay").child(city);
-                    Ref1.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                            for ( DataSnapshot data1 : dataSnapshot1.getChildren() )
-                            {
-                                Requested_Stay r = new Requested_Stay();
-                                r.requested_city = city;
-                                r.requested_status = data1.child("status").getValue().toString();
-                                r.requested_stay_name = data1.getKey().toString();
-                                Log.d("TAH","INSIDEVALUES "+r.requested_city+"  "+r.requested_status+"  "+r.requested_stay_name);
-                                your_requests.add(r);
-                            }
-                        }
-                        @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
-                    });
-                    Log.d("TAG","SIZE "+your_requests.size());
-                    for ( Requested_Stay r : your_requests ) {
-                        //Log.d("TAH", "INSIDEVALUES " + r.requested_city + "  " + r.requested_status + "  " + r.requested_stay_name);
-                    }
-        */
+
     }
 }

@@ -90,7 +90,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                    Log.d("TAG", "HELL NO" + snapshot1.getValue().toString());
+                    Log.d("TAG", "HELL NO" + snapshot1.getKey().toString());
                     if (snapshot1.child("unique_id").getValue().toString().equals(firebaseUser.getUid())) {
                         fHostName = snapshot1.child("stay_person").getValue().toString();
                         fStayName = snapshot1.child("stay_name").getValue().toString();

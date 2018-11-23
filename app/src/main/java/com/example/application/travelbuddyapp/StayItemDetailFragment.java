@@ -145,17 +145,18 @@ public class StayItemDetailFragment extends Fragment {
                 if (dateShow.getText().toString().equals(""))
                     Toast.makeText(getContext(), "Please choose date to stay", Toast.LENGTH_SHORT).show();
                 else {
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("status").setValue("0");
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("username").setValue(stay.getStay_person());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("status").setValue("0");
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("username").setValue(stay.getStay_person());
                     databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("status").setValue("0");
                     //databaseReference1.child("requests").child(firebaseUser.getUid()).child("username").setValue(stayPersonText);
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("user_id").setValue(firebaseUser.getUid());
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("stay_city").setValue(stay.getCity());
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("requested_stay_id").setValue(stay.getStay_id());
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("dateToStay").setValue(dateShow.getText().toString());
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("NumberOfTraveller").setValue(travellerNumber.getText().toString());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("user_id").setValue(firebaseUser.getUid());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("stay_city").setValue(stay.getCity());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("requested_stay_id").setValue(stay.getStay_id());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("dateToStay").setValue(dateShow.getText().toString());
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("NumberOfTraveller").setValue(travellerNumber.getText().toString());
 
                     databaseReference.child("requestedStay").child(stay.getCity()).child(stay.getStay_id()).child("status").setValue("0");
+                    databaseReference.child("requestedStay").child(stay.getCity()).child(stay.getStay_id()).child("stay_name").setValue(stay.getStay_name());
                     Toast.makeText(getContext(), "Request Sent \nStatus: Pending", Toast.LENGTH_SHORT).show();
                 }
             }
