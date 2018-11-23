@@ -41,7 +41,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference1;
     StorageReference storageReference;
     FloatingActionButton addStayButton;
     StayAdapter adapter;
@@ -58,7 +58,6 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -102,48 +101,65 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                         fImage = snapshot1.child("image").getValue().toString();
                         stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate, fCity);
                         addStayList.add(stayFromFB);
-                        furtherAction(root);
+                        //furtherAction(root);
                     }
                 }
             }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            @Override public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
+            @Override public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) { }
+            @Override public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
+            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
-
         furtherAction(root);
-
         return root;
     }
 
     public void furtherAction(View root){
         adapter = new StayAdapter(root.getContext(), addStayList);
         recyclerView.setAdapter(adapter);
-
         adapter.setOnItemClickListner(new StayAdapter.OnItemClickListner() {
             @Override
             public void onItemClick(int position) {
-                addStayList.get(position);
-                loadFragment(new StayCardOpen());
+                Stay query = addStayList.get(position);
+                Toast.makeText(getContext(), "STAY ID "+query.city, Toast.LENGTH_SHORT).show();
+
+                ArrayList<Requests> stay_requests = getRequest(query.stay_id,query.city);
+
+                Bundle bunfrag = new Bundle();
+                bunfrag.putParcelableArrayList("requests",stay_requests);
+                bunfrag.putString("city",query.city);
+                bunfrag.putString("stay_id",query.stay_id);
+                AddedStayRequests added_stay_requests = new AddedStayRequests();
+                added_stay_requests.setArguments(bunfrag);
+
+                loadFragment(added_stay_requests);
             }
         });
+    }
+
+    public ArrayList<Requests> getRequest(String id,String city)
+    {
+        Log.d("TAH","IN "+id);
+        final ArrayList<Requests> requests = new ArrayList<Requests>();
+        DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("Stay").child(city).child(id).child("requests");
+        requestRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for ( DataSnapshot data : dataSnapshot.getChildren() )
+                {
+                    Log.d("TAH","INSIDE");
+                    Requests r = new Requests();
+                    r.NumberOfTraveller = data.child("NumberOfTraveller").getValue().toString();
+                    r.dateToStay = data.child("dateToStay").getValue().toString();
+                    //r.username = data.child("username").getValue().toString();
+                    r.user_id = data.child("user_id").getValue().toString();
+                    Log.d("TAG","VALUES "+r.NumberOfTraveller+"  "+r.dateToStay+"  "+r.username+"  "+r.user_id);
+                    requests.add(r);
+                }
+            }
+            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+        return requests;
     }
 
     public void openDialog(){
@@ -161,48 +177,42 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
         rCity = City;
 
         //Checking
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 long getChildrenCount = 0;
-                if (dataSnapshot.hasChild(rCity)){
-                    getChildrenCount = dataSnapshot.getChildrenCount();
-                    Log.d("TAG HAI BAS", "Children count inside:" + getChildrenCount);
+                boolean changed = false;
+                if (!changed) {
+                    if (dataSnapshot.hasChild(rCity)) {
+                        getChildrenCount = dataSnapshot.child(rCity).getChildrenCount();
+                        Log.d("TAG HAI BAS", "Children count inside:" + dataSnapshot.child(rCity).getChildrenCount());
+                        Log.d("TAG HAI BAS", "Data count:" + getChildrenCount);
+                    } else getChildrenCount = 0;
+                    Log.d("TAG HAI BAS", "Children count outside:" + getChildrenCount);
+                    String addingChild = "User" + (getChildrenCount + 1);
+                    databaseReference.child(rCity).child(addingChild).child("stay_id").setValue(addingChild);
+                    databaseReference.child(rCity).child(addingChild).child("stay_person").setValue(rHostName);
+                    databaseReference.child(rCity).child(addingChild).child("stay_name").setValue(rStayName);
+                    databaseReference.child(rCity).child(addingChild).child("hostDate").setValue(rDate);
+                    databaseReference.child(rCity).child(addingChild).child("rating").setValue("0");
+                    databaseReference.child(rCity).child(addingChild).child("city").setValue(rCity);
+                    databaseReference.child(rCity).child(addingChild).child("image").setValue("");
+                    databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
+                    changed = true;
                 }
-                else getChildrenCount = 0;
-                Log.d("TAG HAI BAS", "Children count outside:" + getChildrenCount);
-                String addingChild = "User" + (getChildrenCount+1);
-                databaseReference.child(rCity).child(addingChild).child("stay_id").setValue(addingChild);
-                databaseReference.child(rCity).child(addingChild).child("stay_person").setValue(rHostName);
-                databaseReference.child(rCity).child(addingChild).child("stay_name").setValue(rStayName);
-                databaseReference.child(rCity).child(addingChild).child("hostDate").setValue(rDate);
-                databaseReference.child(rCity).child(addingChild).child("rating").setValue("0");
-                databaseReference.child(rCity).child(addingChild).child("city").setValue(rCity);
-                databaseReference.child(rCity).child(addingChild).child("image").setValue("");
-                databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-        //Till here
-
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_id").setValue(firebaseUser.getUid());
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_person").setValue(rHostName);
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("stay_name").setValue(rStayName);
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("hostDate").setValue(rDate);
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("rating").setValue("0");
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("city").setValue(rCity);
-//        databaseReference.child(rCity).child(firebaseUser.getUid()).child("image").setValue("");
     }
 
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, fragment);
-        //transaction.addToBackStack(null);
+        transaction.replace(R.id.frame2, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }

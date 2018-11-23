@@ -6,7 +6,7 @@
     <string name="password_should_be_atleast_of_6_characters">*Password should be atleast of 6 characters</string>
     <string name="re_type_password">Re-type password:</string>
     <string name="username">Username:</string>
-    <string name="Register">Register</string>
+    <string name="Register">REGISTER</string>
     <string name="e_mail">E-mail:</string>
     <string name="traveller">Traveller</string>
     <string name="password">Password:</string>
@@ -34,7 +34,4 @@
     <string name="request_stay">Request Stay</string>
     <string name="name">Name</string>
     <string name="show_email_com">show@email.com</string>
-
-
-
 </resources>

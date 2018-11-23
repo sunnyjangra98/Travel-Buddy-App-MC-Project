@@ -14,7 +14,6 @@ public class AccountActivity  extends AppCompatActivity  {
     FrameLayout frame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
     }
@@ -31,25 +30,23 @@ public class AccountActivity  extends AppCompatActivity  {
             transaction.commit();
         }
         else if(fragmentName.equals(ADD_STAY_FRAGMENT_NAME)){
-
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, new AddStaysFragment());
+            //transaction.addToBackStack(null);
             transaction.commit();
 
         }
         else if(fragmentName.equals(STAY_REQUESTS_FRAGMENT_NAME)){
-
-//            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.frame2, new StayRequestsFragment());
-//            transaction.commit();
-
+            /*
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame2, new StayRequestsFragment());
+            transaction.commit();
+            */
         }
         else if(fragmentName.equals(REQUESTED_STAY_FRAGMENT_NAME)){
-
-           // android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-           // transaction.replace(R.id.frame2, new StaysRequestedFragment());
-           // transaction.commit();
-
+//            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.frame2, new StaysRequestedFragment());
+//            transaction.commit();
         }
     }
 }
