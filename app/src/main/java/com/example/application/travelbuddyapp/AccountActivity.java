@@ -94,10 +94,16 @@ public class AccountActivity  extends AppCompatActivity  {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     for (DataSnapshot data1 : data.getChildren()){
+                        Log.d("TAG", "HELL YEAH:" + data1.getValue());
                         Requested_Stay r = new Requested_Stay();
                         r.requested_city = data.getKey();
-                        r.requested_status = data1.child("status").getValue().toString();
-                        r.requested_stay_name = data1.getKey();
+                        int intStatus = Integer.parseInt(data1.child("status").getValue().toString());
+                        String stringStatus = "";
+                        if (intStatus == 0) stringStatus = "Pending";
+                        else if (intStatus == 1) stringStatus = "Approved";
+                        else stringStatus = "Rejected";
+                        r.requested_status = stringStatus;
+                        r.requested_stay_name = data1.child("stay_name").getValue().toString();
                         your_requests.add(r);
                     }
                 }
