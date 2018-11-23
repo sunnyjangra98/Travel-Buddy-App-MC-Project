@@ -98,6 +98,7 @@ public class EditProfile extends Fragment {
                 originalName = name;
                 email = dataSnapshot.child("email").getValue().toString();
                 originalEmail = email;
+
                 if (dataSnapshot.hasChild("address"))
                     address = dataSnapshot.child("address").getValue().toString();
                 else{
@@ -108,6 +109,7 @@ public class EditProfile extends Fragment {
                 editName.setText(name);
                 editEmail.setText(email);
                 editAddress.setText(address);
+
                 storageReference.child(firebaseUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -141,6 +143,7 @@ public class EditProfile extends Fragment {
                     Toast.makeText(getContext(), "Nothing to update", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    progressDialog.show();
                     if(!originalName.equals(editName.getText().toString()))
                         databaseReference.child("username").setValue(editName.getText().toString());
                     if(!originalEmail.equals(editEmail.getText().toString()))
@@ -155,16 +158,16 @@ public class EditProfile extends Fragment {
                                         if (task.isSuccessful()){
                                             String update = "Data updated";
                                             Toast.makeText(getContext(), update, Toast.LENGTH_SHORT).show();
-                                            progressDialog.dismiss();
+
                                         }
                                         else {
-                                            //Toast.makeText(getContext(), "Image upload failed...Try again", Toast.LENGTH_SHORT).show();
-                                            progressDialog.dismiss();
+                                            Toast.makeText(getContext(), "Image upload failed...Try again", Toast.LENGTH_SHORT).show();
+
                                         }
                                     }
                                 });
                     }
-                    progressDialog.show();
+                    progressDialog.dismiss();
                     Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                     displayNotification(v, "User Profile", "Record was updated successfully");
                 }

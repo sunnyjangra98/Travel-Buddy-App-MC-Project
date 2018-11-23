@@ -20,11 +20,6 @@ import java.util.List;
 public class WelcomeFragment extends Fragment {
 
     View root;
-    SearchView searchView;
-    Button searchButton;
-    List<Stay> stayList;
-    Uri imageUri;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
