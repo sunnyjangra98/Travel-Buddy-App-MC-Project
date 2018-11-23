@@ -145,7 +145,7 @@ public class StayItemDetailFragment extends Fragment {
                 if (dateShow.getText().toString().equals(""))
                     Toast.makeText(getContext(), "Please choose date to stay", Toast.LENGTH_SHORT).show();
                 else {
-                    databaseReference1.child("requests").child(firebaseUser.getUid()).child("status").setValue("0");
+                    databaseReference1.child("requests").child(firebaseUser.getUid() + dateShow.getText().toString()).child("status").setValue("0");
                     //databaseReference1.child("requests").child(firebaseUser.getUid()).child("username").setValue(stayPersonText);
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("user_id").setValue(firebaseUser.getUid());
                     databaseReference1.child("requests").child(firebaseUser.getUid()).child("dateToStay").setValue(dateShow.getText().toString());
