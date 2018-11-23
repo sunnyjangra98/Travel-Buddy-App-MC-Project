@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.view.ActionMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,16 +41,23 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.MyView
 
         @Override
         public boolean onActionItemClicked(android.support.v7.view.ActionMode mode, MenuItem item) {
-            for (Requests intItem : selectedItems) {
-                String username = intItem.username;
-                Toast.makeText(mCtx, "USERNAME "+username, Toast.LENGTH_SHORT).show();
-            }
-            /*
             if ( item.getItemId() == 1 )
-            { }
+            {
+                for (Requests intItem : selectedItems) {
+                    //String username = intItem.username;
+                    //Toast.makeText(mCtx, "VALUES "+intItem.stay_city+" "+intItem.requested_stay_id+" "+intItem.user_id, Toast.LENGTH_SHORT).show();
+                    updateStatus(intItem,"1");
+                }
+            }
             else if ( item.getItemId() == 2 )
-            { }
-            */
+            {
+                for (Requests intItem : selectedItems) {
+                    //String username = intItem.username;
+                    //Toast.makeText(mCtx, "VALUES "+intItem.stay_city+" "+intItem.requested_stay_id+" "+ intItem.user_id, Toast.LENGTH_SHORT).show();
+                    updateStatus(intItem,"-1");
+                }
+            }
+            selectedItems.clear();
             mode.finish();
             return true;
         }
@@ -124,6 +135,17 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.MyView
         holder.number_of_traveller.setText(requests.getNumberOfTraveller());
         holder.status.setText(requests.getStatus());
         holder.update(requestsList.get(position));
+    }
+
+    public void updateStatus(Requests req, String s)
+    {
+        //Toast.makeText(mCtx, "VALUES "+req.requested_stay_id+"  "+req.stay_city, Toast.LENGTH_SHORT).show();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Stay").child(req.stay_city);
+        databaseReference.child(req.requested_stay_id).child("requests").child(req.user_id).child("status").setValue(s);
+        DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Users").child(req.user_id);
+        databaseReference2.child("requestedStay").child(req.stay_city).child(req.requested_stay_id).child("status").setValue(s);
+        //Log.d("TAG","VALUES "+req.user_id+"  "+req.stay_city);
+        Toast.makeText(mCtx, "VALUES "+req.requested_stay_id+"  "+req.stay_city+" "+req.user_id, Toast.LENGTH_SHORT).show();
     }
 
     @Override

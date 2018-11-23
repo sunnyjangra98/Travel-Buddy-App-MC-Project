@@ -19,7 +19,6 @@ public class StaysRequestedFragment extends Fragment {
     private Requested_StayAdapter mAdapter;
 
     public StaysRequestedFragment() {
-
     }
 
     @Override
@@ -33,7 +32,7 @@ public class StaysRequestedFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_stays_requested, container, false);
         if ( getArguments() != null )
         {
-            requestedList = getArguments().getParcelableArrayList("requests");
+            requestedList = getArguments().getParcelableArrayList("your_requests");
         }
         recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
         mAdapter = new Requested_StayAdapter(root.getContext(),requestedList);

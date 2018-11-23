@@ -10,6 +10,15 @@ public class Requests implements Parcelable
     String status;
     String user_id;
     String username;
+    String stay_city;
+    String requested_stay_id;
+
+    public String getStay_city() { return stay_city; }
+    public void setStay_city(String stay_city) { this.stay_city = stay_city; }
+    public String getRequested_stay_id() {
+        return requested_stay_id;
+    }
+    public void setRequested_stay_id(String requested_stay_id) { this.requested_stay_id = requested_stay_id; }
 
     public Requests() { }
 

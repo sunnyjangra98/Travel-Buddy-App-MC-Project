@@ -127,8 +127,6 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
 
                 Bundle bunfrag = new Bundle();
                 bunfrag.putParcelableArrayList("requests",stay_requests);
-                bunfrag.putString("city",query.city);
-                bunfrag.putString("stay_id",query.stay_id);
                 AddedStayRequests added_stay_requests = new AddedStayRequests();
                 added_stay_requests.setArguments(bunfrag);
 
@@ -137,9 +135,9 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
         });
     }
 
+
     public ArrayList<Requests> getRequest(String id,String city)
     {
-        Log.d("TAH","IN "+id);
         final ArrayList<Requests> requests = new ArrayList<Requests>();
         DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("Stay").child(city).child(id).child("requests");
         requestRef.addValueEventListener(new ValueEventListener() {
@@ -151,7 +149,9 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                     Requests r = new Requests();
                     r.NumberOfTraveller = data.child("NumberOfTraveller").getValue().toString();
                     r.dateToStay = data.child("dateToStay").getValue().toString();
-                    //r.username = data.child("username").getValue().toString();
+                    r.username = data.child("username").getValue().toString();
+                    r.requested_stay_id = data.child("requested_stay_id").getValue().toString();
+                    r.stay_city = data.child("stay_city").getValue().toString();
                     r.user_id = data.child("user_id").getValue().toString();
                     Log.d("TAG","VALUES "+r.NumberOfTraveller+"  "+r.dateToStay+"  "+r.username+"  "+r.user_id);
                     requests.add(r);
@@ -161,6 +161,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
         });
         return requests;
     }
+
 
     public void openDialog(){
         StayDialog stayDialog = new StayDialog();

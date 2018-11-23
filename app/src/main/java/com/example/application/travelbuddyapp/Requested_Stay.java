@@ -5,22 +5,20 @@ import android.os.Parcelable;
 
 public class Requested_Stay implements Parcelable
 {
+    String requested_stay_name;
+    String requested_stay_person;
+    String requested_city;
+    String requested_status;
+
     public String getRequested_stay_name() { return requested_stay_name; }
     public void setRequested_stay_name(String requested_stay_name) { this.requested_stay_name = requested_stay_name; }
     public String getRequested_stay_person() { return requested_stay_person; }
     public void setRequested_stay_person(String requested_stay_person) { this.requested_stay_person = requested_stay_person; }
-
-    String requested_stay_name;
-    String requested_stay_person;
-
     public String getRequested_city() { return requested_city; }
     public void setRequested_city(String requested_city) { this.requested_city = requested_city; }
 
-    String requested_city;
     public String getRequested_status() { return requested_status; }
     public void setRequested_status(String requested_status) { this.requested_status = requested_status; }
-
-    String requested_status;
 
     public Requested_Stay(){}
 

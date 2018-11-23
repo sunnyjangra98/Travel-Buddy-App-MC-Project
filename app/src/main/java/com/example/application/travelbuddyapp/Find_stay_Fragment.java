@@ -109,38 +109,7 @@ public class Find_stay_Fragment extends Fragment {
                 final ArrayList<Reviews> reviews = new ArrayList<>();
 
                 Log.d("KEY","ID ID "+stay_id);
-                /*
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Stay").child(selectedItemText);
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                            String key = snapshot1.getKey();
-                            Log.d("KEY","KEY DEKHO "+key);
-                            //snapshot1.child("stay_id").getValue().equals(stay_id)
-                            if ( snapshot1.hasChild("stay_id") ) {
-                                Log.d("KEY","IF INSIDE");
-                                reviewReference = FirebaseDatabase.getInstance().getReference().child("Stay").child(key).child("reviews");
-                                reviewReference.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for (DataSnapshot snapshot2 : dataSnapshot.getChildren()) {
-                                            Log.d("KEY","INSIDE "+snapshot2.getKey());
-                                            String username = snapshot2.child("user_id").getValue().toString();
-                                            String text = snapshot2.child("review_text").getValue().toString();
-                                            String rating = snapshot2.child("rating").getValue().toString();
-                                            Log.d("KEY","RATE "+rating);
-                                            Reviews r = new Reviews(username,text,rating);
-                                            reviews.add(r);
-                                        }
-                                    }
-                                    @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
-                                });
-                            }
-                        }
-                    }
-                    @Override public void onCancelled(@NonNull DatabaseError databaseError) { } });
-                    */
+
                 holder.textView_stay.setText(stay_name);
                 holder.textView_person.setText(stay_person);
                 holder.textView_rating.setText(rating);
