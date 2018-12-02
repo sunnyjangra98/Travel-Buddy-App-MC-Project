@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <ImageView
+                android:id="@+id/travel_hostpic"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="11dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="9dp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="11dp"
+                tools:layout_editor_absoluteY="7dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/travel_place"
+                android:layout_width="205dp"
+                android:layout_height="33dp"
+                android:layout_below="@+id/travel_hostpic"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="-130dp"
+                android:layout_marginEnd="27dp"
+                android:layout_marginRight="27dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="154dp"
+                tools:layout_editor_absoluteY="7dp" />
+
+            <TextView
+                android:id="@+id/travel_details"
+                android:layout_width="205dp"
+                android:layout_height="33dp"
+                android:layout_alignStart="@+id/travel_place"
+                android:layout_alignEnd="@+id/travel_goingno"
+                android:layout_alignRight="@+id/travel_goingno"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:text="TextView"
+                android:textSize="16sp"
+                tools:ignore="MissingConstraints,RtlCompat"
+                tools:layout_editor_absoluteX="154dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <TextView
+                android:id="@+id/travel_host"
+                android:layout_width="190dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/travel_hostpic"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="11dp"
+                tools:layout_editor_absoluteY="144dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="3dp" />
+
+            <ImageButton
+                android:id="@+id/travel_button_interested"
+                android:layout_width="49dp"
+                android:layout_height="42dp"
+                android:layout_alignBottom="@+id/travel_button_willjoin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="96dp"
+                android:layout_marginRight="96dp"
+                android:layout_marginBottom="2dp"
+                app:srcCompat="@drawable/outline_account_box_black_48dp"
+                tools:layout_editor_absoluteX="154dp"
+                tools:layout_editor_absoluteY="82dp" />
+
+            <TextView
+                android:id="@+id/travel_interested"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/travel_host"
+                android:layout_alignStart="@+id/travel_place"
+                android:layout_marginStart="-1dp"
+                android:layout_marginBottom="-7dp"
+                android:text="Interested"
+                tools:layout_editor_absoluteX="146dp"
+                tools:layout_editor_absoluteY="125dp"
+                android:layout_alignLeft="@+id/travel_place"
+                android:layout_marginLeft="-1dp" />
+
+            <ImageButton
+                android:id="@+id/travel_button_willjoin"
+                android:layout_width="54dp"
+                android:layout_height="46dp"
+                android:layout_below="@+id/travel_details"
+                android:layout_alignStart="@+id/travel_place"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="108dp"
+                android:layout_marginRight="108dp"
+                android:layout_toStartOf="@+id/travel_goingno"
+                android:layout_toLeftOf="@+id/travel_goingno"
+                app:srcCompat="@drawable/ic_home_black_24dp"
+                tools:layout_editor_absoluteX="233dp"
+                tools:layout_editor_absoluteY="79dp"
+                android:layout_alignLeft="@+id/travel_place"
+                android:layout_marginLeft="6dp" />
+
+            <TextView
+                android:id="@+id/travel_willjoin"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_alignTop="@+id/travel_going"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="94dp"
+                android:layout_marginRight="94dp"
+                android:text="Will Join"
+                tools:layout_editor_absoluteX="233dp"
+                tools:layout_editor_absoluteY="125dp" />
+
+            <TextView
+                android:id="@+id/travel_goingno"
+                android:layout_width="42dp"
+                android:layout_height="30dp"
+                android:layout_above="@+id/travel_willjoin"
+                android:layout_alignStart="@+id/travel_going"
+                android:layout_marginStart="-1dp"
+                android:layout_marginBottom="6dp"
+                android:text="111"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="317dp"
+                tools:layout_editor_absoluteY="90dp"
+                android:layout_alignLeft="@+id/travel_going"
+                android:layout_marginLeft="-1dp" />
+
+            <TextView
+                android:id="@+id/travel_going"
+                android:layout_width="39dp"
+                android:layout_height="19dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="127dp"
+                android:layout_marginBottom="30dp"
+                android:layout_toEndOf="@+id/travel_host"
+                android:text="Going"
+                tools:layout_editor_absoluteX="320dp"
+                tools:layout_editor_absoluteY="125dp"
+                android:layout_toRightOf="@+id/travel_host"
+                android:layout_marginLeft="127dp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
