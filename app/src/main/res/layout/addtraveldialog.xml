@@ -51,9 +51,9 @@
         android:id="@+id/tripplace"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="180dp"
-        android:text="Place :"
+        android:text="Place (City):"
         android:textSize="17dp" />
 
     <EditText
@@ -99,9 +99,9 @@
         android:id="@+id/tripcity"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="290dp"
-        android:text="City :"
+        android:text="Country :"
         android:textSize="17dp" />
 
     <EditText
