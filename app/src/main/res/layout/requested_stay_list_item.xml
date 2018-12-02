@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/requested_stay_name"
+        android:layout_width="89dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/requested_city"
+        android:layout_width="76dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/username"
+        android:layout_below="@+id/review_rating"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/host_name"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/username"
+        android:layout_marginEnd="11dp"
+        android:textColor="#999999"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="76dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView" />
+
+</RelativeLayout>
