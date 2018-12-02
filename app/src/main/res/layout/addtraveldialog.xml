@@ -67,7 +67,7 @@
         android:id="@+id/tripdate"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="230dp"
         android:text="Date :"
         android:textSize="17dp" />
@@ -76,22 +76,22 @@
         android:id="@+id/tripdateformat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="260dp"
         android:text="(dd-mm-yyyy)" />
 
     <EditText
         android:id="@+id/TravelAddDate"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="160dp"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="215dp" />
 
     <ImageButton
         android:id="@+id/calendarButton"
-        android:layout_width="45dp"
+        android:layout_width="43dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="119dp"
+        android:layout_marginLeft="75dp"
         android:layout_marginTop="215dp"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
@@ -99,7 +99,7 @@
         android:id="@+id/tripcity"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="290dp"
         android:text="Country :"
         android:textSize="17dp" />
@@ -108,7 +108,7 @@
         android:id="@+id/TravelAddCity"
         android:layout_width="220dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="110dp"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="270dp" />
 
 </RelativeLayout>
