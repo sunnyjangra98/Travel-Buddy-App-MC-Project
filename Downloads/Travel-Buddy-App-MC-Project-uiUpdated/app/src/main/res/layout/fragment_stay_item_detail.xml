@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/stayName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/textview"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/reviewText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/stayImage"
+                            android:layout_margin="5dp"
+                            android:layout_toLeftOf="@+id/stayRatingBar"
+                            android:text="@string/textview"
+                            android:textSize="24sp"
+                            android:layout_toStartOf="@+id/stayRatingBar" />
+
+                        <RatingBar
+                            android:id="@+id/stayRatingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignRight="@+id/stayName"
+                            android:numStars="1"
+                            android:layout_alignEnd="@+id/stayName" />
+
+                        <ImageView
+                            android:id="@+id/stayImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="190dp"
+                            android:layout_below="@+id/stayName"
+                            android:layout_margin="5dp"
+                            app:srcCompat="@color/colorPrimary"
+                            android:contentDescription="@string/todo" />
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/stayBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/textview"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/stayDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/textview" />
+
+                        <TextView
+                            android:id="@+id/stayOffers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/textview"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp" >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/selectPeople"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/travellers"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/travellerAdd"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignEnd="@+id/selectPeople"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignRight="@+id/selectPeople"
+                            android:layout_margin="5dp"
+                            android:background="@android:color/background_light"
+                            android:contentDescription="@string/todo"
+                            android:foregroundGravity="right"
+                            app:srcCompat="@android:drawable/ic_input_add" />
+
+                        <TextView
+                            android:id="@+id/travellerNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="false"
+                            android:layout_centerInParent="false"
+                            android:layout_centerVertical="false"
+                            android:layout_margin="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toLeftOf="@+id/travellerAdd"
+                            android:layout_toStartOf="@+id/travellerAdd"
+                            android:text="@string/_1"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/travellerSub"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_margin="5dp"
+                            android:layout_toLeftOf="@+id/travellerNumber"
+                            android:layout_toStartOf="@+id/travellerNumber"
+                            android:background="@android:color/background_light"
+                            android:contentDescription="@string/todo"
+                            app:srcCompat="@android:drawable/button_onoff_indicator_on" />
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/selectPeople"
+                            android:layout_margin="5dp"
+                            android:text="@string/select_date"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/calendarImageButton"
+                            android:layout_width="30dp"
+                            android:layout_height="36dp"
+                            android:layout_marginLeft="100dp"
+                            android:layout_marginTop="35dp"
+                            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+                        <TextView
+                            android:id="@+id/dateShow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="45dp"
+                            android:layout_marginLeft="150dp"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <Button
+                    android:id="@+id/requestStayButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="@string/request_stay"
+                    android:textColor="@android:color/background_light" />
+
+            </LinearLayout>
+
+    </ScrollView>
