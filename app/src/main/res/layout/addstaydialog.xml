@@ -109,4 +109,36 @@
         android:layout_marginTop="270dp"
         android:layout_marginLeft="110dp"/>
 
+    <TextView
+        android:id="@+id/phoneView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="17dp"
+        android:text="Phone No. :"
+        android:layout_marginTop="340dp"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="325dp"
+        android:layout_marginLeft="110dp"/>
+
+    <TextView
+        android:id="@+id/maxPeoplesView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="17dp"
+        android:text="Max. Peoples to Stay :"
+        android:layout_marginTop="390dp"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/editMaxPeoples"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="190dp"/>
+
 </RelativeLayout>
