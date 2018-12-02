@@ -37,7 +37,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_margin="5dp"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/circualr_background" />
 
             <TextView
                 android:id="@+id/emailText"

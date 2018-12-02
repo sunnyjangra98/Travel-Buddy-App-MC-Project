@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class EditProfile extends Fragment {
     StorageReference storageReference;
     EditText editName, editEmail, editAddress;
     Button saveButton;
-    FloatingActionButton chooseButton;
+   // FloatingActionButton chooseButton;
     String name, email, address, originalName, originalEmail, originalAddress;
     int REQUEST_CODE = 1;
     Uri imageUri;
@@ -65,6 +66,7 @@ public class EditProfile extends Fragment {
     private final String CHANNEL_ID = "sample notification";
     private final int NOTIFICATION_ID = 001;
     String message = "fromNotification";
+    Boolean ImageChanged =false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,7 @@ public class EditProfile extends Fragment {
         editName = (EditText) root.findViewById(R.id.editName);
         editEmail = (EditText) root.findViewById(R.id.editEmail);
         editAddress = (EditText) root.findViewById(R.id.editAddress);
-        chooseButton = (FloatingActionButton) root.findViewById(R.id.chooseButton);
+       // chooseButton = (FloatingActionButton) root.findViewById(R.id.chooseButton);
         saveButton = (Button) root.findViewById(R.id.saveButton);
         progressDialog = new ProgressDialog(getContext());
         imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getResources().getResourcePackageName(R.drawable.default_person_image));
@@ -96,6 +98,7 @@ public class EditProfile extends Fragment {
                 originalName = name;
                 email = dataSnapshot.child("email").getValue().toString();
                 originalEmail = email;
+
                 if (dataSnapshot.hasChild("address"))
                     address = dataSnapshot.child("address").getValue().toString();
                 else{
@@ -106,6 +109,7 @@ public class EditProfile extends Fragment {
                 editName.setText(name);
                 editEmail.setText(email);
                 editAddress.setText(address);
+
                 storageReference.child(firebaseUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -121,7 +125,7 @@ public class EditProfile extends Fragment {
             }
         });
 
-        chooseButton.setOnClickListener(new View.OnClickListener() {
+        newImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery(v);
@@ -135,33 +139,38 @@ public class EditProfile extends Fragment {
                 progressDialog.setMessage("Updating Record");
 
                 if (originalName.equals(editName.getText().toString()) && originalEmail.equals(editEmail.getText().toString())
-                        && originalAddress.equals(editAddress.getText().toString())) {
+                        && originalAddress.equals(editAddress.getText().toString()) && !ImageChanged) {
                     Toast.makeText(getContext(), "Nothing to update", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    databaseReference.child("username").setValue(editName.getText().toString());
-                    databaseReference.child("email").setValue(editEmail.getText().toString());
-                    databaseReference.child("address").setValue(editAddress.getText().toString());
-                    Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
-                }
+                    progressDialog.show();
+                    if(!originalName.equals(editName.getText().toString()))
+                        databaseReference.child("username").setValue(editName.getText().toString());
+                    if(!originalEmail.equals(editEmail.getText().toString()))
+                        databaseReference.child("email").setValue(editEmail.getText().toString());
+                    if(! originalAddress.equals(editAddress.getText().toString()))
+                        databaseReference.child("address").setValue(editAddress.getText().toString());
+                    if(ImageChanged){
+                        sRef.putFile(imageUri)
+                                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                        if (task.isSuccessful()){
+                                            String update = "Data updated";
+                                            Toast.makeText(getContext(), update, Toast.LENGTH_SHORT).show();
 
-                displayNotification(v, "User Profile", "Record was updated successfully");
-                progressDialog.show();
-                sRef.putFile(imageUri)
-                        .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                if (task.isSuccessful()){
-                                    String update = "Data updated";
-                                    Toast.makeText(getContext(), update, Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
-                                else {
-                                    //Toast.makeText(getContext(), "Image upload failed...Try again", Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
-                            }
-                        });
+                                        }
+                                        else {
+                                            Toast.makeText(getContext(), "Image upload failed...Try again", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+                    }
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+                    displayNotification(v, "User Profile", "Record was updated successfully");
+                }
             }
         });
 
@@ -180,6 +189,7 @@ public class EditProfile extends Fragment {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null){
             imageUri = data.getData();
             newImage.setImageURI(imageUri);
+            ImageChanged =true; //image was changed
         }
     }
 

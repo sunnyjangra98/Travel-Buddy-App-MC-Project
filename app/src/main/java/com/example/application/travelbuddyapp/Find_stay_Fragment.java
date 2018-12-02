@@ -1,7 +1,9 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -12,16 +14,20 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -40,15 +46,15 @@ import com.google.firebase.database.ValueEventListener;
 import javax.xml.transform.Result;
 
 public class Find_stay_Fragment extends Fragment {
-    public static int SEARCH_REQUEST_CODE =1;
     public static int DISPLAY_REQUEST_CODE=2;
-
-    public static String STAY_ = "STAY_";
     StayAdapter adapter;
     RecyclerView recyclerView;
     List<Stay> stayList;
     View root;
     String selectedItemText;
+    SearchView searchView;
+
+    String query = "";
 
     DatabaseReference mDatabase;
     DatabaseReference databaseReference;
@@ -71,20 +77,53 @@ public class Find_stay_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root =  inflater.inflate(R.layout.fragment_find_stay_, container, false);
+        searchView = root.findViewById(R.id.staySearchView);
         recyclerView = (RecyclerView) root.findViewById(R.id.stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         stayList = new ArrayList<>();
-
-        Button searchButton = root.findViewById(R.id.search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i =new Intent(getActivity(), StayFragmentsActivity.class);
-                i.putExtra(StayFragmentsActivity.FRAGMENT_NAME, StayFragmentsActivity.SEARCH_FRAGMENT_NAME);
-                startActivityForResult(i, SEARCH_REQUEST_CODE);
-            }
-        });
         return root;
+
+
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+       // searchView = root.findViewById(R.id.staySearchView);
+        try {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+
+                    if (s.isEmpty())
+                        return false;
+                    else if (s.equals(""))
+                        return false;
+                    else {
+                        stayList.clear();
+                        selectedItemText = s;
+                        DatabaseReference Ref = FirebaseDatabase.getInstance().getReference().child("Recent Stay Search");
+                        Ref.child("search").setValue(selectedItemText).toString();
+                        firebaseQuery();
+                        searchView.clearFocus();
+                        return true;
+                    }
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    query = s;
+                    return false;
+                }
+            });
+        }
+        catch (Exception e){
+            Log.i("Find STAY", "Exception"+ e.getMessage());
+        }
+
+
+
+
+
     }
 
     public void firebaseQuery()
@@ -120,6 +159,23 @@ public class Find_stay_Fragment extends Fragment {
                 final Bundle bunfrag = new Bundle();
                 bunfrag.putSerializable(StayFragmentsActivity.STAY_FOR_DETAIL, stay );
 
+                holder.callButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String phoneNumber = "tel:"+"9717439438";
+                        Uri number = Uri.parse(phoneNumber);
+                        Log.i("phone call", "onClick: Phone call");
+
+                        Intent callIntent = new Intent(Intent.ACTION_CALL, number);
+
+                        if (ActivityCompat.checkSelfPermission( getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                            Log.i("phone call", "onClick: Phone call true");
+                            startActivity(callIntent);
+                        }
+
+
+                    }
+                });
                 holder.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -142,12 +198,7 @@ public class Find_stay_Fragment extends Fragment {
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+
 
     public void recentSearched()
     {
@@ -183,12 +234,14 @@ public class Find_stay_Fragment extends Fragment {
 
     class StayViewHolder extends RecyclerView.ViewHolder {
         TextView textView_person, textView_stay, textView_date, textView_rating;
+        ImageButton callButton;
         ImageView imageView;
         public StayViewHolder(View itemView) {
             super(itemView);
             textView_stay =itemView.findViewById(R.id.textView_stay);
             textView_person =itemView.findViewById(R.id.textView_person);
             textView_date = itemView.findViewById(R.id.stay_date);
+            callButton = itemView.findViewById(R.id.call_button);
             textView_rating = itemView.findViewById(R.id.rating_text);
             imageView = itemView.findViewById(R.id.imageView);
         }
@@ -201,23 +254,6 @@ public class Find_stay_Fragment extends Fragment {
         firebaseRecyclerAdapter.stopListening();
     }
     */
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);Stay toAdd = null;
-        if(resultCode == Activity.RESULT_OK){
-            if(!data.getExtras().isEmpty()){
-                stayList.clear();
-                Bundle b = data.getExtras();
-                selectedItemText = b.getString("searchQuery");
-                DatabaseReference Ref = FirebaseDatabase.getInstance().getReference().child("Recent Stay Search");
-                Ref.child("search").setValue(selectedItemText).toString();
-                firebaseQuery();
-                //for(int i=0;i<b.size();i++){ stayList.add((Stay) b.getSerializable(Find_stay_Fragment.STAY_+(i+1))); }
-                //adapter.notifyDataSetChanged();
-            }
-        }
-    }
 
     @Override
     public void onResume() {

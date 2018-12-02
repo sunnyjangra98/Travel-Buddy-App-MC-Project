@@ -1,6 +1,7 @@
 package com.example.application.travelbuddyapp;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,15 +9,22 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.view.MotionEvent;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,12 +35,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences;
+
 
 public class Login_fragment extends Fragment implements View.OnClickListener{
     SharedPreferences sp;
     EditText login_email, login_password;
     CheckBox login_showPassword;
     Button login_button, newUser_button;
+    RelativeLayout loginRelativeLayout;
     ToAndFro taf;
     FirebaseAuth firebaseAuth;
 
@@ -55,7 +67,11 @@ public class Login_fragment extends Fragment implements View.OnClickListener{
         newUser_button = (Button) getActivity().findViewById(R.id.newUser_button);
         taf = (ToAndFro) getActivity();
         firebaseAuth = FirebaseAuth.getInstance();
+
+
         progressDialog = new ProgressDialog(getContext());
+
+
 
         login_showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -69,6 +85,17 @@ public class Login_fragment extends Fragment implements View.OnClickListener{
             }
         });
 
+        login_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    Log.i("Login", "DOne Button Clicked");
+                    login_button.performClick();
+                }
+                return false;
+            }
+        });
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +118,11 @@ public class Login_fragment extends Fragment implements View.OnClickListener{
                                         Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
                                         getActivity().finish();
 
+
+
+
                                         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
                                         sp.edit().putBoolean("logged",true).apply();
                                         sp.edit().putString("User",email).apply();
                                         sp.edit().putString("password",password).apply();

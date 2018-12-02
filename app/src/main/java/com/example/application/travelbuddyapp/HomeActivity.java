@@ -108,7 +108,9 @@ public class HomeActivity extends AppCompatActivity {
             if(extras.containsKey("fromNotification")) {
                 String msg = extras.getString("fromNotification");
                 if (msg.equals("EditProfileFragment")){
-                    loadFragment(new EditProfile());
+                    navigation.setSelectedItemId(R.id.navigation_account);
+                    loadFragment(new AccountFragment());
+                    //l
                 }
             }
         }

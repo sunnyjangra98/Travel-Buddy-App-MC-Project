@@ -9,15 +9,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.application.travelbuddyapp.Login_fragment;
@@ -45,7 +48,7 @@ public class Signup_fragment extends Fragment implements View.OnClickListener{
     Context activityContext = getActivity();
     ProgressDialog progressDialog;
     Fragment login_Fragment = new Login_fragment();
-    RadioGroup radioGroup;
+    // RadioGroup radioGroup;
     RadioButton radioButton;
 
     @Override
@@ -67,7 +70,7 @@ public class Signup_fragment extends Fragment implements View.OnClickListener{
         firebaseAuth = FirebaseAuth.getInstance();
         rootReference = FirebaseDatabase.getInstance().getReference();
         progressDialog = new ProgressDialog(getContext());
-        radioGroup = (RadioGroup) getActivity().findViewById(R.id.RadioGroup);
+        // radioGroup = (RadioGroup) getActivity().findViewById(R.id.RadioGroup);
 
         taf = (ToAndFro) getActivity();
 
@@ -82,6 +85,18 @@ public class Signup_fragment extends Fragment implements View.OnClickListener{
                     register_password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
                     register_reTypePassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
                 }
+            }
+        });
+
+        register_reTypePassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    Log.i("Signup", "DOne Button Clicked");
+                    register_button.performClick();
+                }
+                return false;
             }
         });
 
@@ -113,8 +128,8 @@ public class Signup_fragment extends Fragment implements View.OnClickListener{
                                         if (task.isSuccessful()) {
                                             firebaseUser = firebaseAuth.getCurrentUser();
                                             String signType = "";
-                                            radioButton = (RadioButton)getActivity().findViewById(radioGroup.getCheckedRadioButtonId());
-                                            signType = radioButton.getText().toString();
+                                            //radioButton = (RadioButton)getActivity().findViewById(radioGroup.getCheckedRadioButtonId());
+                                            signType = "Traveller";
                                             UserData userData = new UserData(signType, register_userName.getText().toString(), email);
                                             rootReference.child("Users").child(firebaseUser.getUid()).setValue(userData)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
