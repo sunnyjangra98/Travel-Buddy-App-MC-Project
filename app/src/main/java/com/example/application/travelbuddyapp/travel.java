@@ -3,14 +3,18 @@ package com.example.application.travelbuddyapp;
 import java.io.Serializable;
 
 public class travel implements Serializable {
-    private int travel_id;
-    private int image;
+    private String travel_id;
+    private String image;
     private String place;
     private String details;
     private String host;
     private String no_of_going;
 
-    public travel(int travel_id, int image, String place, String host, String no_of_going, String details) {
+    public travel(){
+
+    }
+
+    public travel(String travel_id, String image, String place, String host, String no_of_going, String details) {
         this.travel_id = travel_id;
         this.image = image;
         this.place = place;
@@ -19,11 +23,11 @@ public class travel implements Serializable {
         this.details = details;
     }
 
-    public int gettravel_id() {
+    public String gettravel_id() {
         return travel_id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -43,11 +47,11 @@ public class travel implements Serializable {
         return details;
     }
 
-    public void settravel_id(int travel_id) {
+    public void settravel_id(String travel_id) {
         this.travel_id = travel_id;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
