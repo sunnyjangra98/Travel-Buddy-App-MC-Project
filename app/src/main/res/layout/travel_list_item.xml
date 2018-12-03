@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <android.support.constraint.ConstraintLayout
+        <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="175dp"
@@ -180,9 +180,9 @@
                 tools:layout_editor_absoluteX="320dp"
                 tools:layout_editor_absoluteY="125dp" />
 
-        </android.support.constraint.ConstraintLayout>
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
