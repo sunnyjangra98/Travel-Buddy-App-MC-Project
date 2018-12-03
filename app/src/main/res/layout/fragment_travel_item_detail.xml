@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TravelItemDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/stayName"
+                android:layout_width="141dp"
+                android:layout_height="36dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="44dp"
+                tools:ignore="MissingConstraints,RtlCompat" />
+
+            <TextView
+                android:id="@+id/reviewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/stayImage"
+                android:layout_toStartOf="@+id/stayRatingBar"
+                android:layout_toLeftOf="@+id/stayRatingBar"
+                android:text="@string/textview"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="125dp"
+                tools:ignore="MissingConstraints" />
+
+            <RatingBar
+                android:id="@+id/stayRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/stayName"
+                android:layout_alignRight="@+id/stayName"
+                android:numStars="1"
+                tools:layout_editor_absoluteX="316dp"
+                tools:layout_editor_absoluteY="115dp"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/stayImage"
+                android:layout_width="152dp"
+                android:layout_height="171dp"
+                android:layout_below="@+id/stayName"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@color/colorPrimary"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="16dp"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/f1"
+                android:layout_width="262dp"
+                android:layout_height="32dp"
+                android:layout_margin="5dp"
+                android:text="@string/textview"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="204dp" />
+
+            <TextView
+                android:id="@+id/f2"
+                android:layout_width="315dp"
+                android:layout_height="63dp"
+                android:layout_margin="5dp"
+                android:text="@string/textview"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="247dp" />
+
+            <ImageButton
+                android:id="@+id/travel_button_interested"
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:layout_alignBottom="@+id/travel_button_willjoin"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@drawable/outline_account_box_black_48dp"
+                tools:layout_editor_absoluteX="81dp"
+                tools:layout_editor_absoluteY="327dp"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/travel_button_willjoin"
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:layout_below="@+id/travel_details"
+                android:layout_alignStart="@+id/travel_place"
+                android:layout_alignLeft="@+id/travel_place"
+                android:layout_toStartOf="@+id/travel_goingno"
+                android:layout_toLeftOf="@+id/travel_goingno"
+                app:srcCompat="@drawable/ic_home_black_24dp"
+                tools:layout_editor_absoluteX="225dp"
+                tools:layout_editor_absoluteY="327dp"
+                tools:ignore="MissingConstraints" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
