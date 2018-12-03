@@ -31,6 +31,7 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 public class AccountFragment extends Fragment {
+
     SharedPreferences sp;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -42,7 +43,6 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -67,12 +67,14 @@ public class AccountFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 nameView.setText(dataSnapshot.child("username").getValue().toString());
                 emailText.setText(dataSnapshot.child("email").getValue().toString());
+                /*
                 storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         Glide.with(getContext()).load(uri).into(profileImage);
                     }
                 });
+                */
             }
 
             @Override
@@ -130,6 +132,9 @@ public class AccountFragment extends Fragment {
                 sp.edit().putBoolean("logged",false).apply();
                 sp.edit().putString("User","").apply();
                 sp.edit().putString("password","").apply();
+//                sp.edit().putBoolean("logged",false).apply();
+//                sp.edit().putString("User","").apply();
+//                sp.edit().putString("password","").apply();
             }
         });
 
