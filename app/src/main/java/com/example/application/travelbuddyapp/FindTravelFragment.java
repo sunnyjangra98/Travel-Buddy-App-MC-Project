@@ -1,6 +1,7 @@
 package com.example.application.travelbuddyapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -60,7 +62,17 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 new travel(3, R.drawable.profpic, "Miami(Florida)", "Ashwat", "2", "Papa batayenge"));
         travelList.add(
                 new travel(4, R.drawable.profpic, "Sydney(Australia)", "Dushyant", "4", "This week"));
-        adapter = new TravelAdapter(view.getContext(), travelList);
+        adapter = new TravelAdapter(view.getContext(), travelList, new TravelAdapter.OnItemClickListner() {
+            @Override
+            public void onItemClick(int position) {
+                Log.d("TAG", "hello:"+travelList.get(position));
+                travel abc = (travel) travelList.get(position);
+                Log.d("TAG", "oye hoye:"+abc.gettravel_id());
+                Intent i = new Intent(getActivity(), activity_travel_fragment.class);
+                i.putExtra("id", ""+abc.gettravel_id());
+                startActivity(i);
+            }
+        });
         Log.i("hhhh", "done");
         recyclerView.setAdapter(adapter);
 
@@ -76,6 +88,7 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 openDialog();
             }
         });
+
 
         return view;
     }
@@ -104,7 +117,12 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
         rCity = City;
         travelList.add(new travel(travelList.size()+1, R.drawable.profpic, rPlace+"("+rCity+")","Naman Kumar", rtripDetail, rDate));
         recyclerView = (RecyclerView) view.findViewById(R.id.travel_list);
-        adapter = new TravelAdapter(view.getContext(), travelList);
+        adapter = new TravelAdapter(view.getContext(), travelList, new TravelAdapter.OnItemClickListner() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        });
         Log.i("hhhh", "done");
         recyclerView.setAdapter(adapter);
 
