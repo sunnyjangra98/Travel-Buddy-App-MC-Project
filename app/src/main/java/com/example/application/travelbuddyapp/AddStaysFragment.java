@@ -52,7 +52,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     View root;
     Stay stayFromFB;
     String fHostName, fStayName, fDate, fStayId, fCity, fRating, fImage;
-    String rHostName, rPlace, rDate, rCity, rStayName, rPhone, rMaxPeoples;
+    String rHostName, rPlace, rDate, rCity, rStayName, rPhone, rMaxPeoples, rDetails, rOffers;
 
 
     @Override
@@ -172,7 +172,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     }
 
     @Override
-    public void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City, String phone, String maxPeoples, final String imageUrl) {
+    public void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City, String phone, String maxPeoples, final String imageUrl, String details, String offers) {
         rStayName = stayName;
         rHostName = hostName;
         rPlace = Place;
@@ -180,6 +180,8 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
         rCity = City;
         rPhone = phone;
         rMaxPeoples = maxPeoples;
+        rDetails = details;
+        rOffers = offers;
 
         //Checking
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -205,6 +207,8 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                     databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
                     databaseReference.child(rCity).child(addingChild).child("phone").setValue(rPhone);
                     databaseReference.child(rCity).child(addingChild).child("MaxPeoples").setValue(rMaxPeoples);
+                    databaseReference.child(rCity).child(addingChild).child("details").setValue(rDetails);
+                    databaseReference.child(rCity).child(addingChild).child("offers").setValue(rOffers);
                     changed = true;
                 }
             }

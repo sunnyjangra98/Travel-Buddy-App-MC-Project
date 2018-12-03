@@ -23,7 +23,6 @@ public class Stay implements Serializable{
     public String stay_person;
     public String stay_id;
     public String details;
-    public String interests;
     public String max_people;
     public String things_to_offer;
     public String hostDate, city;
@@ -34,8 +33,6 @@ public class Stay implements Serializable{
 
     public String getDetails() { return details; }
     public void setDetails(String details) { this.details = details; }
-    public String getInterests() { return interests; }
-    public void setInterests(String interests) { this.interests = interests; }
     public String getMax_people() { return max_people; }
     public void setMax_people(String max_people) { this.max_people = max_people; }
     public String getThings_to_offer() { return things_to_offer; }

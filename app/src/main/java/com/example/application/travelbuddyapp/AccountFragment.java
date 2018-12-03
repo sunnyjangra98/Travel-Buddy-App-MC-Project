@@ -67,14 +67,12 @@ public class AccountFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 nameView.setText(dataSnapshot.child("username").getValue().toString());
                 emailText.setText(dataSnapshot.child("email").getValue().toString());
-                /*
                 storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         Glide.with(getContext()).load(uri).into(profileImage);
                     }
                 });
-                */
             }
 
             @Override

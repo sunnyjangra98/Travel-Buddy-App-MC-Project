@@ -40,13 +40,13 @@ import static android.app.Activity.RESULT_OK;
 
 public class StayDialog extends AppCompatDialogFragment {
 
-    EditText editStayName, editHostName, editPlace, editCity, editPhone, editMaxPeoples;
+    EditText editStayName, editHostName, editPlace, editCity, editPhone, editMaxPeoples, editDetails, editOffers;
     TextView editDate;
     Button stayImageButton;
     ImageButton calendarImageButton;
     private  StayDialogListener listner;
     private int mYear, mMonth, mDay;
-    String stayName, hostName, date, city, place, phone, maxPeoples;
+    String stayName, hostName, date, city, place, phone, maxPeoples, details, offers;
     int REQUEST_CODE = 1;
     Uri imageUri;
     FirebaseAuth firebaseAuth;
@@ -72,6 +72,8 @@ public class StayDialog extends AppCompatDialogFragment {
         editCity = (EditText) view.findViewById(R.id.editCity);
         editPhone = (EditText) view.findViewById(R.id.editPhone);
         editMaxPeoples = (EditText) view.findViewById(R.id.editMaxPeoples);
+        editDetails = (EditText) view.findViewById(R.id.editDetails);
+        editOffers = (EditText) view.findViewById(R.id.editOffers);
         calendarImageButton = (ImageButton) view.findViewById(R.id.calendarImageButton);
         stayImageButton = (Button) view.findViewById(R.id.stayImageButton);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -121,32 +123,39 @@ public class StayDialog extends AppCompatDialogFragment {
                 city = editCity.getText().toString();
                 phone = editPhone.getText().toString();
                 maxPeoples = editMaxPeoples.getText().toString();
+                details = editDetails.getText().toString();
+                offers = editOffers.getText().toString();
                 if (editStayName.getText().toString().equals("") ||
                         editHostName.getText().toString().equals("") ||
                         editPlace.getText().toString().equals("") ||
                         editDate.getText().toString().equals("") ||
                         editCity.getText().toString().equals("") ||
                         editPhone.getText().toString().equals("") ||
+                        editDetails.getText().toString().equals("") ||
+                        editOffers.getText().toString().equals("") ||
                         (editPhone.getText().toString().length() != 10) ||
                         editMaxPeoples.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Please fill all fields \n   Nothing to Add", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    storageReference = storageReference.child(city).child(firebaseUser.getUid());
-                    storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    Log.d("TAG", "Fucking downloaded:" + uri);
-                                    listner.sendBackToFragment(stayName, hostName, place, date, city, phone, maxPeoples, uri.toString());
-                                }
-                            });
-                        }
-                    });
-                    getDialog().dismiss();
+                    //if (Integer.parseInt(editPhone.getText().toString()) > 0) {
+                        storageReference = storageReference.child(city).child(firebaseUser.getUid());
+                        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Log.d("TAG", "Fucking downloaded:" + uri);
+                                        listner.sendBackToFragment(stayName, hostName, place, date, city, phone, maxPeoples, uri.toString(), details, offers);
+                                    }
+                                });
+                            }
+                        });
+                        getDialog().dismiss();
+//                    }
+//                    else Toast.makeText(getContext(), "Incorrect Phone Number", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -174,6 +183,6 @@ public class StayDialog extends AppCompatDialogFragment {
     }
 
     public interface StayDialogListener{
-        void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City, String phone, String maxPeoples, String imageURL);
+        void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City, String phone, String maxPeoples, String imageURL, String details, String offers);
     }
 }
