@@ -94,6 +94,7 @@ public class EditProfile extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("TAG", "Is this tag");
                 name = dataSnapshot.child("username").getValue().toString();
                 originalName = name;
                 email = dataSnapshot.child("email").getValue().toString();
