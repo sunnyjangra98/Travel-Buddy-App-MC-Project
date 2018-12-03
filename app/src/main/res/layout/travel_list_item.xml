@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="175dp"
@@ -79,7 +79,9 @@
                 android:layout_height="24dp"
                 android:layout_below="@+id/travel_hostpic"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp"
                 android:layout_marginTop="6dp"
                 android:text="TextView"
                 android:textAllCaps="true"
@@ -87,9 +89,7 @@
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="11dp"
-                tools:layout_editor_absoluteY="144dp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="3dp" />
+                tools:layout_editor_absoluteY="144dp" />
 
             <ImageButton
                 android:id="@+id/travel_button_interested"
@@ -111,13 +111,13 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/travel_host"
                 android:layout_alignStart="@+id/travel_place"
+                android:layout_alignLeft="@+id/travel_place"
                 android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_marginBottom="-7dp"
                 android:text="Interested"
                 tools:layout_editor_absoluteX="146dp"
-                tools:layout_editor_absoluteY="125dp"
-                android:layout_alignLeft="@+id/travel_place"
-                android:layout_marginLeft="-1dp" />
+                tools:layout_editor_absoluteY="125dp" />
 
             <ImageButton
                 android:id="@+id/travel_button_willjoin"
@@ -125,7 +125,9 @@
                 android:layout_height="46dp"
                 android:layout_below="@+id/travel_details"
                 android:layout_alignStart="@+id/travel_place"
+                android:layout_alignLeft="@+id/travel_place"
                 android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="108dp"
                 android:layout_marginRight="108dp"
@@ -133,9 +135,7 @@
                 android:layout_toLeftOf="@+id/travel_goingno"
                 app:srcCompat="@drawable/ic_home_black_24dp"
                 tools:layout_editor_absoluteX="233dp"
-                tools:layout_editor_absoluteY="79dp"
-                android:layout_alignLeft="@+id/travel_place"
-                android:layout_marginLeft="6dp" />
+                tools:layout_editor_absoluteY="79dp" />
 
             <TextView
                 android:id="@+id/travel_willjoin"
@@ -157,14 +157,14 @@
                 android:layout_height="30dp"
                 android:layout_above="@+id/travel_willjoin"
                 android:layout_alignStart="@+id/travel_going"
+                android:layout_alignLeft="@+id/travel_going"
                 android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_marginBottom="6dp"
                 android:text="111"
                 android:textSize="24sp"
                 tools:layout_editor_absoluteX="317dp"
-                tools:layout_editor_absoluteY="90dp"
-                android:layout_alignLeft="@+id/travel_going"
-                android:layout_marginLeft="-1dp" />
+                tools:layout_editor_absoluteY="90dp" />
 
             <TextView
                 android:id="@+id/travel_going"
@@ -172,17 +172,17 @@
                 android:layout_height="19dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="127dp"
+                android:layout_marginLeft="127dp"
                 android:layout_marginBottom="30dp"
                 android:layout_toEndOf="@+id/travel_host"
+                android:layout_toRightOf="@+id/travel_host"
                 android:text="Going"
                 tools:layout_editor_absoluteX="320dp"
-                tools:layout_editor_absoluteY="125dp"
-                android:layout_toRightOf="@+id/travel_host"
-                android:layout_marginLeft="127dp" />
+                tools:layout_editor_absoluteY="125dp" />
 
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
