@@ -29,9 +29,6 @@ public class Stay implements Serializable{
     public String hostDate, city;
     String unique_id;
 
-    public String getUnique_id() { return unique_id; }
-    public void setUnique_id(String unique_id) { this.unique_id = unique_id; }
-
     public String getDetails() { return details; }
     public void setDetails(String details) { this.details = details; }
     public String getInterests() { return interests; }
@@ -85,7 +82,9 @@ public class Stay implements Serializable{
         this.city = city;
     }
 
-    public Stay(){ }
+    public Stay(){
+
+    }
 
     public Stay(String stay_id, String image, String stay_name, String stay_person, String rating, String hostDate, String city) {
         this.stay_id = stay_id;
@@ -138,4 +137,105 @@ public class Stay implements Serializable{
 /*
 package com.example.application.travelbuddyapp;
 import java.io.Serializable;
+public class Stay implements Serializable{
+    private String stay_id;
+    private int image;
+    private String stay_name;
+    private String stay_person;
+    private String rating;
+    private String hostDate;
+
+    public Stay(String stay_id, int image, String stay_name, String stay_person, String rating, String hostDate) {
+=======
+package com.example.application.travelbuddyapp;
+
+import android.net.Uri;
+
+import com.bumptech.glide.Glide;
+
+import java.io.Serializable;
+
+public class Stay implements Serializable{
+    private String stay_id;
+    public Uri image;
+    private String stay_name;
+    private String stay_person;
+    private float rating;
+    private String hostDate;
+
+    public Stay(String stay_id, Uri image, String stay_name, String stay_person, float rating, String hostDate) {
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
+        this.stay_id = stay_id;
+        this.image = image;
+        this.stay_name = stay_name;
+        this.stay_person = stay_person;
+        this.rating = rating;
+        this.hostDate = hostDate;
+    }
+
+    public String getStay_id() {
+        return stay_id;
+    }
+
+<<<<<<< HEAD
+    public int getImage() {
+=======
+    public Uri getImage() {
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
+        return image;
+    }
+
+    public String getStay_name() {
+        return stay_name;
+    }
+
+    public String getStay_person() {
+        return stay_person;
+    }
+
+<<<<<<< HEAD
+    public String getRating() {
+=======
+    public float getRating() {
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
+        return rating;
+    }
+
+    public String gethostDate() {
+        return hostDate;
+    }
+
+    public void setStay_id(String stay_id) {
+        this.stay_id = stay_id;
+    }
+
+<<<<<<< HEAD
+    public void setImage(int image) {
+=======
+    public void setImage(Uri image) {
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
+        this.image = image;
+    }
+
+    public void setStay_name(String stay_name) {
+        this.stay_name = stay_name;
+    }
+
+    public void setStay_person(String stay_person) {
+        this.stay_person = stay_person;
+    }
+
+<<<<<<< HEAD
+    public void setRating(String rating) {
+=======
+    public void setRating(float rating) {
+>>>>>>> 70238b35ae8d025948c4beb1ad984543d914e42f
+        this.rating = rating;
+    }
+
+    public void sethostDate(String hostDate) {
+        this.hostDate = hostDate;
+    }
+}
+<<<<<<< HEAD
 */

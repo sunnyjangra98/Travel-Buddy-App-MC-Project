@@ -93,13 +93,27 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                     Log.d("TAG", "HELL NO" + snapshot1.getValue().toString());
                     if ( snapshot1.hasChild("unique_id") ) {
                         if (snapshot1.child("unique_id").getValue().toString().equals(firebaseUser.getUid())) {
-                            if (snapshot1.child("stay_person").getValue().toString() != null) { fHostName = snapshot1.child("stay_person").getValue().toString(); }
-                            if (snapshot1.child("stay_name").getValue().toString() != null) { fStayName = snapshot1.child("stay_name").getValue().toString(); }
-                            if (snapshot1.child("hostDate").getValue().toString() != null) { fDate = snapshot1.child("hostDate").getValue().toString(); }
-                            if (snapshot1.child("rating").getValue().toString() != null) { fRating = snapshot1.child("rating").getValue().toString(); }
-                            if (snapshot1.child("stay_id").getValue().toString() != null) { fStayId = snapshot1.child("stay_id").getValue().toString(); }
-                            if (snapshot1.child("city").getValue().toString() != null) { fCity = snapshot1.child("city").getValue().toString(); }
-                            if (snapshot1.child("image").getValue().toString() != null) { fImage = snapshot1.child("image").getValue().toString(); }
+                            if (snapshot1.child("stay_person").getValue().toString() != null) {
+                                fHostName = snapshot1.child("stay_person").getValue().toString();
+                            }
+                            if (snapshot1.child("stay_name").getValue().toString() != null) {
+                                fStayName = snapshot1.child("stay_name").getValue().toString();
+                            }
+                            if (snapshot1.child("hostDate").getValue().toString() != null) {
+                                fDate = snapshot1.child("hostDate").getValue().toString();
+                            }
+                            if (snapshot1.child("rating").getValue().toString() != null) {
+                                fRating = snapshot1.child("rating").getValue().toString();
+                            }
+                            if (snapshot1.child("stay_id").getValue().toString() != null) {
+                                fStayId = snapshot1.child("stay_id").getValue().toString();
+                            }
+                            if (snapshot1.child("city").getValue().toString() != null) {
+                                fCity = snapshot1.child("city").getValue().toString();
+                            }
+                            if (snapshot1.child("image").getValue().toString() != null) {
+                                fImage = snapshot1.child("image").getValue().toString();
+                            }
                             stayFromFB = new Stay(fStayId, fImage, fStayName, fHostName, fRating, fDate, fCity);
                             addStayList.add(stayFromFB);
                             //furtherAction(root);
@@ -148,13 +162,12 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                 {
                     Log.d("TAH","INSIDE");
                     Requests r = new Requests();
-                    if ( data.hasChild("NumberOfTraveller") ) { if ( data.child("NumberOfTraveller").getValue().toString() != null ) { r.NumberOfTraveller = data.child("NumberOfTraveller").getValue().toString(); } }
-                    if ( data.hasChild("dateToStay")) { if ( data.child("dateToStay").getValue().toString() != null ) { r.dateToStay = data.child("dateToStay").getValue().toString(); } }
-                    if ( data.hasChild("username") ) { if ( data.child("username").getValue().toString() != null ) { r.username = data.child("username").getValue().toString(); } }
-                    if ( data.hasChild("requested_stay_id") ) { if ( data.child("requested_stay_id").getValue().toString() != null ) { r.requested_stay_id = data.child("requested_stay_id").getValue().toString(); } }
-                    if ( data.hasChild("stay_city")) { if ( data.child("stay_city").getValue().toString() != null ) { r.stay_city = data.child("stay_city").getValue().toString(); } }
-                    if ( data.hasChild("user_id") ) { if ( data.child("user_id").getValue().toString() != null ) { r.user_id = data.child("user_id").getValue().toString(); } }
-
+                    r.NumberOfTraveller = data.child("NumberOfTraveller").getValue().toString();
+                    r.dateToStay = data.child("dateToStay").getValue().toString();
+                    r.username = data.child("username").getValue().toString();
+                    r.requested_stay_id = data.child("requested_stay_id").getValue().toString();
+                    r.stay_city = data.child("stay_city").getValue().toString();
+                    r.user_id = data.child("user_id").getValue().toString();
                     Log.d("TAG","VALUES "+r.NumberOfTraveller+"  "+r.dateToStay+"  "+r.username+"  "+r.user_id);
                     requests.add(r);
                 }
@@ -204,7 +217,10 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                     changed = true;
                 }
             }
-            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         });
     }
 

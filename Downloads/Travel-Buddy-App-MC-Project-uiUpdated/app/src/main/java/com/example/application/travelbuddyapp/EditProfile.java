@@ -135,6 +135,7 @@ public class EditProfile extends Fragment {
             public void onClick(final View v) {
                 StorageReference sRef = storageReference.child(firebaseUser.getUid());
                 progressDialog.setMessage("Updating Record");
+
                 if (originalName.equals(editName.getText().toString()) && originalEmail.equals(editEmail.getText().toString())
                         && originalAddress.equals(editAddress.getText().toString())) {
                     Toast.makeText(getContext(), "Nothing to update", Toast.LENGTH_SHORT).show();

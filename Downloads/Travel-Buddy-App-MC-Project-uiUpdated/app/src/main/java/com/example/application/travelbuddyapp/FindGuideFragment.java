@@ -24,6 +24,8 @@ public class FindGuideFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -33,8 +35,14 @@ public class FindGuideFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_find_guide, container, false);
     }
 
+
+
+
+
     @Override
     public void onDetach() {
         super.onDetach();
+
     }
+
 }

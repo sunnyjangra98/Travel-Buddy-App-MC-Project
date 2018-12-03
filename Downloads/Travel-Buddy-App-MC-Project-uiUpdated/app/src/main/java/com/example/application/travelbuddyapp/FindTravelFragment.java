@@ -24,6 +24,8 @@ public class FindTravelFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -33,8 +35,14 @@ public class FindTravelFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_find_travel, container, false);
     }
 
+
+
+
+
     @Override
     public void onDetach() {
         super.onDetach();
+
     }
+
 }

@@ -53,9 +53,7 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.StayViewHolder
         holder.textView_person.setText(stay.getStay_person());
         holder.textView_brief.setText(String.valueOf(stay.getHostDate()));
         holder.textView_rating.setText(String.valueOf(stay.getRating()));
-        if ( stay.getImage() != null ) {
-            Glide.with(mCtx).load(stay.getImage()).into(holder.imageView);
-        }
+        Glide.with(mCtx).load(stay.getImage()).into(holder.imageView);
     }
 
     @Override
