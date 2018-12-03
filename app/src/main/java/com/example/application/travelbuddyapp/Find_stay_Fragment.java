@@ -57,7 +57,7 @@ public class Find_stay_Fragment extends Fragment {
     String query = "";
 
     DatabaseReference mDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference1;
     DatabaseReference reviewReference;
     FirebaseRecyclerAdapter<Stay,StayViewHolder> firebaseRecyclerAdapter;
 
@@ -120,10 +120,6 @@ public class Find_stay_Fragment extends Fragment {
             Log.i("Find STAY", "Exception"+ e.getMessage());
         }
 
-
-
-
-
     }
 
     public void firebaseQuery()
@@ -158,22 +154,31 @@ public class Find_stay_Fragment extends Fragment {
                 final StayItemDetailFragment stay_detail = new StayItemDetailFragment();
                 final Bundle bunfrag = new Bundle();
                 bunfrag.putSerializable(StayFragmentsActivity.STAY_FOR_DETAIL, stay );
+                databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Stay").child(stay.getCity()).child(stay.getStay_id());
 
                 holder.callButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String phoneNumber = "tel:"+"9717439438";
-                        Uri number = Uri.parse(phoneNumber);
-                        Log.i("phone call", "onClick: Phone call");
+                        databaseReference1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String phoneNumber = "tel:"+dataSnapshot.child("phone").getValue().toString();
+                                Log.d("TAG", "phone:" + dataSnapshot.child("phone").getValue().toString());
+                                Uri number = Uri.parse(phoneNumber);
+                                Log.i("phone call", "onClick: Phone call");
 
-                        Intent callIntent = new Intent(Intent.ACTION_CALL, number);
+                                Intent callIntent = new Intent(Intent.ACTION_CALL, number);
 
-                        if (ActivityCompat.checkSelfPermission( getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                            Log.i("phone call", "onClick: Phone call true");
-                            startActivity(callIntent);
-                        }
+                                if (ActivityCompat.checkSelfPermission( getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                                    Log.i("phone call", "onClick: Phone call true");
+                                    startActivity(callIntent);
+                                }
+                            }
 
-
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
+                        });
                     }
                 });
                 holder.imageView.setOnClickListener(new View.OnClickListener() {

@@ -70,7 +70,12 @@ public class AccountFragment extends Fragment {
                 storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Glide.with(getContext()).load(uri).into(profileImage);
+                        try {
+                            Glide.with(getContext()).load(uri).into(profileImage);
+                        }
+                        catch (Exception e)
+                        {
+                        }
                     }
                 });
             }
@@ -111,6 +116,8 @@ public class AccountFragment extends Fragment {
         AddStay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent i =new Intent(getActivity().getApplicationContext(), AccountActivity.class);
                 i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.ADD_STAY_FRAGMENT_NAME);
                 getActivity().startActivity(i);

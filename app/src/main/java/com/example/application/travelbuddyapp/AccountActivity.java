@@ -70,7 +70,11 @@ public class AccountActivity  extends AppCompatActivity  {
             bunfrag.putParcelableArrayList("your_requests",stay_requests);
             StaysRequestedFragment your_stay_requests = new StaysRequestedFragment();
             your_stay_requests.setArguments(bunfrag);
-
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
+            }
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, your_stay_requests);
             transaction.commit();
