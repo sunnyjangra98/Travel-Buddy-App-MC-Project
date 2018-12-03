@@ -3,14 +3,12 @@ package com.example.application.travelbuddyapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -81,8 +79,8 @@ public class AccountActivity  extends AppCompatActivity  {
         }
     }
 
+    String city ;
     ArrayList<Requested_Stay> your_requests;
-
     public ArrayList<Requested_Stay> getRequest()
     {
         firebaseAuth = FirebaseAuth.getInstance();
@@ -97,24 +95,26 @@ public class AccountActivity  extends AppCompatActivity  {
                         Log.d("TAG", "HELL YEAH:" + data1.getValue());
                         Requested_Stay r = new Requested_Stay();
                         r.requested_city = data.getKey();
-                        int intStatus = Integer.parseInt(data1.child("status").getValue().toString());
-                        String stringStatus = "";
-                        if (intStatus == 0) stringStatus = "Pending";
-                        else if (intStatus == 1) stringStatus = "Approved";
-                        else stringStatus = "Rejected";
-                        r.requested_status = stringStatus;
-                        r.requested_stay_name = data1.child("stay_name").getValue().toString();
+                        if ( data1.hasChild("status") ) {
+                            if ( data1.child("status").getValue().toString() != null ) {
+                                int intStatus = Integer.parseInt(data1.child("status").getValue().toString());
+                                String stringStatus = "";
+                                if (intStatus == 0) stringStatus = "Pending";
+                                else if (intStatus == 1) stringStatus = "Approved";
+                                else stringStatus = "Rejected";
+                                r.requested_status = stringStatus;
+                            }
+                        }
+                        if ( data1.hasChild("requested_stay_name")) { if ( data1.child("requested_stay_name").getValue().toString() != null )
+                            { r.requested_stay_name = data1.child("requested_stay_name").getValue().toString(); } }
+                        if ( data1.hasChild("requested_stay_person")) { if ( data1.child("requested_stay_person").getValue().toString() != null )
+                        { r.requested_stay_person = data1.child("requested_stay_person").getValue().toString(); } }
                         your_requests.add(r);
                     }
                 }
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
         return your_requests;
-
     }
 }
