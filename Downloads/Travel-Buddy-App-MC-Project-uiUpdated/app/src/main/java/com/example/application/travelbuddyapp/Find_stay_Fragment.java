@@ -56,8 +56,7 @@ public class Find_stay_Fragment extends Fragment {
     FirebaseRecyclerAdapter<Stay,StayViewHolder> firebaseRecyclerAdapter;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public Find_stay_Fragment() {
-    }
+    public Find_stay_Fragment() { }
     // TODO: Rename and change types and number of parameters
     public static Find_stay_Fragment newInstance(String param1, String param2) {
         Find_stay_Fragment fragment = new Find_stay_Fragment();
@@ -68,8 +67,7 @@ public class Find_stay_Fragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root =  inflater.inflate(R.layout.fragment_find_stay_, container, false);
         recyclerView = (RecyclerView) root.findViewById(R.id.stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
@@ -99,7 +97,6 @@ public class Find_stay_Fragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull StayViewHolder holder, int position, @NonNull Stay stay)
             {
-
                 final String stay_id = stay.getStay_id();
                 String stay_name = stay.getStay_name();
                 String stay_person = stay.getStay_person();
@@ -129,7 +126,6 @@ public class Find_stay_Fragment extends Fragment {
                         startActivityForResult(i, DISPLAY_REQUEST_CODE);
                     }
                 });
-
             }
             @Override
             public StayViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
