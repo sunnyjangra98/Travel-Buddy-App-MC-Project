@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class AccountActivity  extends AppCompatActivity  {
     public static String FRAGMENT_NAME="FRAGMENT_NAME";
+    public static String MY_TRIPS_REQUESTS_FRAGMENT_NAME = "MY_TRIPS";
     public static String EDIT_PROFILE_FRAGMENT_NAME="PROFILE";
     public static String ADD_STAY_FRAGMENT_NAME="ADD";
     public static String STAY_REQUESTS_FRAGMENT_NAME="REQUESTS";
@@ -50,7 +51,7 @@ public class AccountActivity  extends AppCompatActivity  {
             transaction.commit();
 
         }
-        else if(fragmentName.equals(STAY_REQUESTS_FRAGMENT_NAME)){
+        else if(fragmentName.equals(MY_TRIPS_REQUESTS_FRAGMENT_NAME)){
             /*
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame2, new StayRequestsFragment());

@@ -95,7 +95,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(getActivity().getApplicationContext(), AccountActivity.class);
-                i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.STAY_REQUESTS_FRAGMENT_NAME);
+                i.putExtra(AccountActivity.FRAGMENT_NAME, AccountActivity.MY_TRIPS_REQUESTS_FRAGMENT_NAME);
                 startActivity(i);
             }
         });

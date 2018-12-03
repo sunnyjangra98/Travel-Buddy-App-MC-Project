@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:text="Stay Requests"
+                android:text="My Trips"
                 android:textSize="20sp" />
 
             <TextView
