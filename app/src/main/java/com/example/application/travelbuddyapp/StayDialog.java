@@ -139,7 +139,7 @@ public class StayDialog extends AppCompatDialogFragment {
                 }
                 else
                 {
-                    //if (Integer.parseInt(editPhone.getText().toString()) > 0) {
+                    if (phone.matches("\\d+")) {
                         storageReference = storageReference.child(city).child(firebaseUser.getUid());
                         storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -154,8 +154,8 @@ public class StayDialog extends AppCompatDialogFragment {
                             }
                         });
                         getDialog().dismiss();
-//                    }
-//                    else Toast.makeText(getContext(), "Incorrect Phone Number", Toast.LENGTH_SHORT).show();
+                    }
+                    else Toast.makeText(getContext(), "Incorrect Phone Number", Toast.LENGTH_SHORT).show();
                 }
             }
         });
