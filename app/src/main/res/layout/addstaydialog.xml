@@ -78,19 +78,19 @@
         android:layout_marginTop="250dp"
         android:layout_marginLeft="35dp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/editDate"
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="215dp"
-        android:layout_marginLeft="160dp"/>
+        android:layout_marginLeft="180dp"/>
 
     <ImageButton
         android:id="@+id/calendarImageButton"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="215dp"
-        android:layout_marginLeft="119dp"
+        android:layout_marginLeft="125dp"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
     <TextView
@@ -140,5 +140,23 @@
         android:layout_height="45dp"
         android:layout_marginTop="375dp"
         android:layout_marginLeft="190dp"/>
+
+    <TextView
+        android:id="@+id/stayImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Stay Image :"
+        android:textSize="17dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="430dp"/>
+
+    <Button
+        android:id="@+id/stayImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="425dp"
+        android:textSize="10dp"
+        android:text="choose image"/>
 
 </RelativeLayout>

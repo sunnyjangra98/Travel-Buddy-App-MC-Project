@@ -41,7 +41,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    DatabaseReference databaseReference, databaseReference1;
+    DatabaseReference databaseReference;
     StorageReference storageReference;
     FloatingActionButton addStayButton;
     StayAdapter adapter;
@@ -67,7 +67,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Stay");
-        storageReference = FirebaseStorage.getInstance().getReference().child("User-Images");
+        storageReference = FirebaseStorage.getInstance().getReference().child("Stay-Images");
         addStayButton = (FloatingActionButton) root.findViewById(R.id.addStayButton);
         recyclerView = (RecyclerView) root.findViewById(R.id.add_stay_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
@@ -172,7 +172,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
     }
 
     @Override
-    public void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City, String phone, String maxPeoples) {
+    public void sendBackToFragment(String stayName, String hostName, String Place, String Date, String City, String phone, String maxPeoples, final String imageUrl) {
         rStayName = stayName;
         rHostName = hostName;
         rPlace = Place;
@@ -201,7 +201,7 @@ public class AddStaysFragment extends Fragment implements StayDialog.StayDialogL
                     databaseReference.child(rCity).child(addingChild).child("hostDate").setValue(rDate);
                     databaseReference.child(rCity).child(addingChild).child("rating").setValue("0");
                     databaseReference.child(rCity).child(addingChild).child("city").setValue(rCity);
-                    databaseReference.child(rCity).child(addingChild).child("image").setValue("");
+                    databaseReference.child(rCity).child(addingChild).child("image").setValue(imageUrl);
                     databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
                     databaseReference.child(rCity).child(addingChild).child("phone").setValue(rPhone);
                     databaseReference.child(rCity).child(addingChild).child("MaxPeoples").setValue(rMaxPeoples);
