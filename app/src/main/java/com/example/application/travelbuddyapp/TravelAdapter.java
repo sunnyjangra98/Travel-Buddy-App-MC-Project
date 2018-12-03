@@ -16,11 +16,20 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
 
     //we are storing all the products in a list
     private List<travel> travelList;
+    private OnItemClickListner listener;
 
     //getting the context and product list with constructor
-    public TravelAdapter(Context mCtx, List<travel> travelList) {
+    public TravelAdapter(Context mCtx, List<travel> travelList, OnItemClickListner listener) {
         this.mCtx = mCtx;
         this.travelList = travelList;
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListner{
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListner(OnItemClickListner listner){
+        listener = listner;
     }
 
     @Override
@@ -28,7 +37,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.travel_list_item, null);
-        return new TravelAdapter.TravelViewHolder(view);
+        return new TravelAdapter.TravelViewHolder(view,listener);
     }
 
 
@@ -59,7 +68,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
         TextView textView_host, textView_place, textView_detail, textView_goingno;
         ImageView imageView;
 
-        public TravelViewHolder(View itemView) {
+        public TravelViewHolder(View itemView, final OnItemClickListner listner) {
             super(itemView);
 
             textView_place =itemView.findViewById(R.id.travel_place);
@@ -67,6 +76,17 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
             textView_detail = itemView.findViewById(R.id.travel_details);
             textView_goingno = itemView.findViewById(R.id.travel_goingno);
             imageView = itemView.findViewById(R.id.travel_hostpic);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listner != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listner.onItemClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }
