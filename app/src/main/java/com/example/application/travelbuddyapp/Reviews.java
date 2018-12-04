@@ -6,10 +6,12 @@ import android.os.Parcelable;
 public class Reviews implements Parcelable{
 
     public Reviews() { }
-    public Reviews(String username, String text, String rating) {
+    public Reviews(String username, String text, String rating, String city,String trip_id) {
         this.review_username = username;
         this.review_rating = rating;
         this.text = text;
+        this.city = city;
+        this.trip_id = trip_id;
     }
 
     @Override
@@ -17,6 +19,8 @@ public class Reviews implements Parcelable{
         dest.writeString(review_username);
         dest.writeString(review_rating);
         dest.writeString(text);
+        dest.writeString(city);
+        dest.writeString(trip_id);
     }
 
     @Override
@@ -38,9 +42,19 @@ public class Reviews implements Parcelable{
     public void setText(String text) { this.text = text; }
     String text;
 
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+    String city;
+
+    public String getTrip_id() { return trip_id; }
+    public void setTrip_id(String trip_id) { this.trip_id = trip_id; }
+    String trip_id;
+
     protected Reviews(Parcel in) {
         review_username = in.readString();
         review_rating = in.readString();
         text = in.readString();
+        city = in.readString();
+        trip_id = in.readString();
     }
 }
