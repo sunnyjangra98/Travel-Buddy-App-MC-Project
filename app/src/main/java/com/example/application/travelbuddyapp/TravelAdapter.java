@@ -55,6 +55,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
         holder.textView_host.setText(trvl.gethost());
         holder.textView_detail.setText(String.valueOf(trvl.getdetails()));
         holder.textView_goingno.setText(String.valueOf(trvl.getno_of_going()));
+        holder.textView_interested.setText(String.valueOf(trvl.getInterested()));
        // Glide.with(mCtx).load(travel.getImage()).into(holder.imageView);
 
     }
@@ -68,7 +69,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
 
     class TravelViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView_host, textView_place, textView_detail, textView_goingno;
+        TextView textView_host, textView_place, textView_detail, textView_goingno, textView_interested;
         ImageView imageView;
 
         public TravelViewHolder(View itemView,final OnItemClickListner listner) {
@@ -79,6 +80,8 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
             textView_detail = itemView.findViewById(R.id.travel_details);
             textView_goingno = itemView.findViewById(R.id.travel_goingno);
             imageView = itemView.findViewById(R.id.travel_hostpic);
+            textView_interested = itemView.findViewById(R.id.travel_interested);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

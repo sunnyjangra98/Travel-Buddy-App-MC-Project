@@ -9,22 +9,28 @@ public class travel implements Serializable {
     private String details;
     private String host;
     private String no_of_going;
+    private String interested;
 
     public travel(){
 
     }
 
-    public travel(String travel_id, String image, String place, String host, String no_of_going, String details) {
+    public travel(String travel_id, String image, String place, String host, String no_of_going, String details, String interested) {
         this.travel_id = travel_id;
         this.image = image;
         this.place = place;
         this.host = host;
         this.no_of_going = no_of_going;
         this.details = details;
+        this.interested = interested;
     }
 
     public String gettravel_id() {
         return travel_id;
+    }
+
+    public String getInterested() {
+        return interested;
     }
 
     public String getImage() {
@@ -49,6 +55,10 @@ public class travel implements Serializable {
 
     public void settravel_id(String travel_id) {
         this.travel_id = travel_id;
+    }
+
+    public void setInterested(String interested) {
+        this.interested = interested;
     }
 
     public void setImage(String image) {

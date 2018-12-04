@@ -21,7 +21,7 @@
         android:layout_height="45dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="80dp"
-        android:text="Trip Name :"
+        android:text="Intersted :"
         android:textSize="17dp" />
 
     <EditText

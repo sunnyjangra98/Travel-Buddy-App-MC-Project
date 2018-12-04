@@ -30,6 +30,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -64,7 +65,7 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
 
     travel travelfromfb;
     String ftripName, ftripDetail, fPlace, fDate, fCity;
-    String rtripName, rtripDetail, rPlace, rDate, rCity;
+    String rtripName, rtripDetail, rPlace, rDate, rCity, rInterested;
 
     String query = "";
 
@@ -104,6 +105,7 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 openDialog();
             }
         });
+
         return root;
     }
     public void openDialog(){
@@ -136,9 +138,10 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                     String addingChild = "User" + (getChildrenCount + 1);
                     databaseReference.child(rCity).child(addingChild).child("travel_id").setValue(addingChild);
                     databaseReference.child(rCity).child(addingChild).child("place").setValue(rCity);
+                    databaseReference.child(rCity).child(addingChild).child("interested").setValue(rtripName);
                     databaseReference.child(rCity).child(addingChild).child("no_of_going").setValue(rtripDetail);
                     databaseReference.child(rCity).child(addingChild).child("details").setValue(rDate);
-                    databaseReference.child(rCity).child(addingChild).child("country").setValue(rPlace);
+                    databaseReference.child(rCity).child(addingChild).child("image").setValue(rPlace);
                     databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
                     changed = true;
                 }
@@ -203,12 +206,14 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 String travel_host = travel2.gethost();
                 String travel_place = travel2.getplace();
                 String travel_image = travel2.getImage();
+                String travel_interested = travel2.getInterested();
 
                 final ArrayList<Reviews> reviews = new ArrayList<>();
 
                 holder.textView_place.setText(travel_place);
                 holder.textView_host.setText(travel_host);
                 holder.textView_detail.setText(travel_detail);
+                holder.textView_interested.setText(travel_interested);
                 holder.textView_goingno.setText(String.valueOf(travel_gointto));
 
 
@@ -226,6 +231,20 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                     }
                 });
 
+                holder.interested.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getActivity(),"Interested",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                holder.going.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getActivity(),"Going",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
             @Override
             public TravelViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
@@ -274,16 +293,19 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
 
 
     class TravelViewHolder extends RecyclerView.ViewHolder {
-        TextView textView_host, textView_place, textView_detail, textView_goingno;
+        TextView textView_host, textView_place, textView_detail, textView_goingno, textView_interested;
         ImageView imageView;
+        ImageButton interested , going;
         public TravelViewHolder(View itemView) {
             super(itemView);
-
+            interested = itemView.findViewById(R.id.travel_button_willjoin);
+            going = itemView.findViewById(R.id.travel_button_interested);
             textView_place =itemView.findViewById(R.id.travel_place);
             textView_host =itemView.findViewById(R.id.travel_host);
             textView_detail = itemView.findViewById(R.id.travel_details);
             textView_goingno = itemView.findViewById(R.id.travel_goingno);
             imageView = itemView.findViewById(R.id.travel_hostpic);
+            textView_interested = itemView.findViewById(R.id.travel_interested);
         }
     }
 

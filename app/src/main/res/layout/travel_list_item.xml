@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     tools:layout_editor_absoluteY="25dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="match_parent"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp">
@@ -75,14 +75,14 @@
 
             <TextView
                 android:id="@+id/travel_host"
-                android:layout_width="190dp"
-                android:layout_height="24dp"
+                android:layout_width="187dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/travel_hostpic"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="3dp"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textAllCaps="true"
                 android:textSize="18sp"
@@ -98,15 +98,15 @@
                 android:layout_alignBottom="@+id/travel_button_willjoin"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="96dp"
-                android:layout_marginRight="96dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="78dp"
+                android:layout_marginRight="78dp"
+                android:layout_marginBottom="1dp"
                 app:srcCompat="@drawable/outline_account_box_black_48dp"
                 tools:layout_editor_absoluteX="154dp"
                 tools:layout_editor_absoluteY="82dp" />
 
             <TextView
-                android:id="@+id/travel_interested"
+                android:id="@+id/travel_interested1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/travel_host"
@@ -121,16 +121,16 @@
 
             <ImageButton
                 android:id="@+id/travel_button_willjoin"
-                android:layout_width="54dp"
-                android:layout_height="46dp"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/travel_details"
                 android:layout_alignStart="@+id/travel_place"
                 android:layout_alignLeft="@+id/travel_place"
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="108dp"
-                android:layout_marginRight="108dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="81dp"
+                android:layout_marginRight="81dp"
                 android:layout_toStartOf="@+id/travel_goingno"
                 android:layout_toLeftOf="@+id/travel_goingno"
                 app:srcCompat="@drawable/ic_home_black_24dp"
@@ -141,44 +141,39 @@
                 android:id="@+id/travel_willjoin"
                 android:layout_width="wrap_content"
                 android:layout_height="19dp"
-                android:layout_alignTop="@+id/travel_going"
+                android:layout_below="@+id/travel_button_interested"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="94dp"
-                android:layout_marginRight="94dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="72dp"
+                android:layout_marginRight="72dp"
                 android:text="Will Join"
                 tools:layout_editor_absoluteX="233dp"
                 tools:layout_editor_absoluteY="125dp" />
 
             <TextView
-                android:id="@+id/travel_goingno"
-                android:layout_width="42dp"
-                android:layout_height="30dp"
-                android:layout_above="@+id/travel_willjoin"
-                android:layout_alignStart="@+id/travel_going"
-                android:layout_alignLeft="@+id/travel_going"
-                android:layout_marginStart="-1dp"
-                android:layout_marginLeft="-1dp"
-                android:layout_marginBottom="6dp"
-                android:text="111"
-                android:textSize="24sp"
-                tools:layout_editor_absoluteX="317dp"
-                tools:layout_editor_absoluteY="90dp" />
+                android:id="@+id/travel_interested"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="174dp"
+                android:layout_marginLeft="174dp"
+                android:layout_marginBottom="31dp"
+                android:text="151" />
 
             <TextView
-                android:id="@+id/travel_going"
-                android:layout_width="39dp"
-                android:layout_height="19dp"
+                android:id="@+id/travel_goingno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="127dp"
-                android:layout_marginLeft="127dp"
-                android:layout_marginBottom="30dp"
-                android:layout_toEndOf="@+id/travel_host"
-                android:layout_toRightOf="@+id/travel_host"
-                android:text="Going"
-                tools:layout_editor_absoluteX="320dp"
-                tools:layout_editor_absoluteY="125dp" />
+                android:layout_marginEnd="85dp"
+                android:layout_marginRight="85dp"
+                android:layout_marginBottom="33dp"
+                android:text="111" />
 
         </RelativeLayout>
 
