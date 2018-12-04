@@ -21,6 +21,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/search_button_bg"
+            android:inputType="textCapWords"
             android:queryHint="Search Stay by Location" />
 
         <ImageView

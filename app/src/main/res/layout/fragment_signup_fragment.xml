@@ -77,7 +77,8 @@
         android:layout_marginLeft="21dp"
         android:layout_marginTop="210dp"
         android:text="Phone"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/editText3"
@@ -88,7 +89,8 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="210dp"
         android:ems="10"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:textColor="@color/cardview_light_background" />
 
     <EditText
         android:id="@+id/register_email"
@@ -209,9 +211,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="460dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:text="REGISTER"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/alreadyUser_button"

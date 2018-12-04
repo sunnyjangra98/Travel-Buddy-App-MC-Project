@@ -13,11 +13,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="535dp"
-            android:layout_marginBottom="7dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="23dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:scrollbars="vertical" />
 
     </LinearLayout>

@@ -10,98 +10,100 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="10dp"
         android:text="Add Trip Details"
+        android:textColor="@android:color/background_dark"
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tripname"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginLeft="25dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="80dp"
         android:text="Intersted :"
-        android:textSize="17dp" />
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/TravelAddName"
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="70dp" />
+        android:layout_marginTop="80dp"
+        android:inputType="textCapWords" />
 
     <TextView
         android:id="@+id/tripdetails"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginLeft="25dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="130dp"
         android:text="Trip Size :"
-        android:textSize="17dp" />
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/TravelAddDetail"
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="130dp"
+        android:inputType="numberSigned" />
 
     <TextView
         android:id="@+id/tripplace"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginLeft="25dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="180dp"
         android:text="Place (City):"
-        android:textSize="17dp" />
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/TravelAddCity"
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="170dp" />
+        android:layout_marginTop="180dp"
+        android:inputType="textCapWords" />
 
     <TextView
         android:id="@+id/tripdate"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginLeft="25dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="230dp"
         android:text="Date :"
-        android:textSize="17dp" />
-
-    <TextView
-        android:id="@+id/tripdateformat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="260dp"
-        android:text="(dd-mm-yyyy)" />
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/TravelAddDate"
         android:layout_width="221dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="215dp" />
+        android:layout_marginTop="230dp" />
 
     <ImageButton
         android:id="@+id/calendarButton"
-        android:layout_width="43dp"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="75dp"
         android:layout_marginTop="215dp"
+        android:background="@color/colorAccent"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
     <TextView
         android:id="@+id/tripcity"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="290dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="280dp"
         android:text="Country :"
+        android:textColor="@android:color/background_dark"
         android:textSize="17dp" />
 
     <EditText
@@ -109,6 +111,7 @@
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="270dp" />
+        android:layout_marginTop="280dp"
+        android:inputType="textCapWords" />
 
 </RelativeLayout>
