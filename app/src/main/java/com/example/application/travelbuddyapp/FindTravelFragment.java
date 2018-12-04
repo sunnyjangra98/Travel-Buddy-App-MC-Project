@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -32,6 +33,8 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,16 +46,25 @@ import java.util.ArrayList;
 import java.util.List;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+
 import javax.xml.transform.Result;
 
-public class FindTravelFragment extends Fragment {
+public class FindTravelFragment extends Fragment implements TravelDialog.TravelDialogListener{
     public static int DISPLAY_REQUEST_CODE=2;
-    StayAdapter adapter;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    TravelAdapter adapter;
+    FloatingActionButton fab;
     RecyclerView recyclerView;
-    List<Stay> travelList;
+    List<travel> travelList;
     View root;
     String selectedItemText;
     SearchView searchView;
+
+    travel travelfromfb;
+    String ftripName, ftripDetail, fPlace, fDate, fCity;
+    String rtripName, rtripDetail, rPlace, rDate, rCity;
 
     String query = "";
 
@@ -77,14 +89,64 @@ public class FindTravelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root =  inflater.inflate(R.layout.fragment_find_travel, container, false);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("travel");
+        fab = (FloatingActionButton) root.findViewById(R.id.travel_addfab);
         searchView = root.findViewById(R.id.travel_searchbar);
         recyclerView = (RecyclerView) root.findViewById(R.id.travel_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         travelList = new ArrayList<>();
+        FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.travel_addfab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
         return root;
-
-
     }
+    public void openDialog(){
+        TravelDialog travelDialog = new TravelDialog();
+        travelDialog.setTargetFragment(FindTravelFragment.this, 1);
+        travelDialog.show(getFragmentManager(), "FindTravelFragment");
+    }
+
+    @Override
+    public void sendBackToFragment(String tripName, String tripDetail, String Place, String Date, String City) {
+        rtripName = tripName;
+        rtripDetail = tripDetail;
+        rPlace = Place;
+        rDate = Date;
+        rCity = City;
+
+        //Checking
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long getChildrenCount = 0;
+                boolean changed = false;
+                if (!changed) {
+                    if (dataSnapshot.hasChild(rCity)) {
+                        getChildrenCount = dataSnapshot.child(rCity).getChildrenCount();
+                        Log.d("TAG HAI BAS", "Children count inside:" + dataSnapshot.child(rCity).getChildrenCount());
+                        Log.d("TAG HAI BAS", "Data count:" + getChildrenCount);
+                    } else getChildrenCount = 0;
+                    Log.d("TAG HAI BAS", "Children count outside:" + getChildrenCount);
+                    String addingChild = "User" + (getChildrenCount + 1);
+                    databaseReference.child(rCity).child(addingChild).child("travel_id").setValue(addingChild);
+                    databaseReference.child(rCity).child(addingChild).child("place").setValue(rCity);
+                    databaseReference.child(rCity).child(addingChild).child("no_of_going").setValue(rtripDetail);
+                    databaseReference.child(rCity).child(addingChild).child("details").setValue(rDate);
+                    databaseReference.child(rCity).child(addingChild).child("country").setValue(rPlace);
+                    databaseReference.child(rCity).child(addingChild).child("unique_id").setValue(firebaseUser.getUid());
+                    changed = true;
+                }
+            }
+            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+    }
+
     @Override
     public void onStart(){
         super.onStart();
@@ -149,33 +211,11 @@ public class FindTravelFragment extends Fragment {
                 holder.textView_detail.setText(travel_detail);
                 holder.textView_goingno.setText(String.valueOf(travel_gointto));
 
-                /*holder.textView_stay.setText(stay_name);
-                holder.textView_person.setText(stay_person);
-                holder.textView_rating.setText(rating);
-                holder.textView_date.setText(date);
-                Glide.with(getActivity()).load(stay.getImage()).into(holder.imageView);*/
 
                 final TravelItemDetailFragment stay_detail = new TravelItemDetailFragment();
                 final Bundle bunfrag2 = new Bundle();
                 bunfrag2.putSerializable(StayFragmentsActivity.STAY_FOR_DETAIL, travel2 );
 
-//                holder.callButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        String phoneNumber = "tel:"+"9717439438";
-//                        Uri number = Uri.parse(phoneNumber);
-//                        Log.i("phone call", "onClick: Phone call");
-//
-//                        Intent callIntent = new Intent(Intent.ACTION_CALL, number);
-//
-//                        if (ActivityCompat.checkSelfPermission( getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-//                            Log.i("phone call", "onClick: Phone call true");
-//                            startActivity(callIntent);
-//                        }
-//
-//
-//                    }
-//                });
                 holder.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -231,6 +271,7 @@ public class FindTravelFragment extends Fragment {
             firebaseQuery();
         }
     }
+
 
     class TravelViewHolder extends RecyclerView.ViewHolder {
         TextView textView_host, textView_place, textView_detail, textView_goingno;

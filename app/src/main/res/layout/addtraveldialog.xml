@@ -57,7 +57,7 @@
         android:textSize="17dp" />
 
     <EditText
-        android:id="@+id/TravelAddPlace"
+        android:id="@+id/TravelAddCity"
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginLeft="120dp"
@@ -105,7 +105,7 @@
         android:textSize="17dp" />
 
     <EditText
-        android:id="@+id/TravelAddCity"
+        android:id="@+id/TravelAddPlace"
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:layout_marginLeft="120dp"
