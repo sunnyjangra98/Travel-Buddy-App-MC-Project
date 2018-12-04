@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -30,44 +29,46 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.storage.StorageReference;
+import android.support.design.widget.FloatingActionButton;
+import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-
 import javax.xml.transform.Result;
 
 public class FindTravelFragment extends Fragment implements TravelDialog.TravelDialogListener{
+//public class FindTravelFragment extends Fragment {
     public static int DISPLAY_REQUEST_CODE=2;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    TravelAdapter adapter;
-    FloatingActionButton fab;
+    StayAdapter adapter;
     RecyclerView recyclerView;
-    List<travel> travelList;
+    List<Stay> travelList;
     View root;
     String selectedItemText;
     SearchView searchView;
-
+    TravelAdapter adapter;
+    FloatingActionButton fab;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    String query = "";
+List<travel> travelList;
     travel travelfromfb;
     String ftripName, ftripDetail, fPlace, fDate, fCity;
     String rtripName, rtripDetail, rPlace, rDate, rCity, rInterested;
-
-    String query = "";
 
     DatabaseReference mDatabase;
     DatabaseReference databaseReference;
@@ -105,24 +106,22 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 openDialog();
             }
         });
-
         return root;
     }
+
     public void openDialog(){
         TravelDialog travelDialog = new TravelDialog();
         travelDialog.setTargetFragment(FindTravelFragment.this, 1);
         travelDialog.show(getFragmentManager(), "FindTravelFragment");
     }
-
-    @Override
+     @Override
     public void sendBackToFragment(String tripName, String tripDetail, String Place, String Date, String City) {
         rtripName = tripName;
         rtripDetail = tripDetail;
         rPlace = Place;
         rDate = Date;
         rCity = City;
-
-        //Checking
+         //Checking
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -185,8 +184,13 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
         }
     }
 
+    String travel_host;
+    String id;
+    String trip_city;
+    ArrayList<travel> Trips;
     public void firebaseQuery()
     {
+        Trips = new ArrayList<travel>();
         //selectedItemText = "Delhi";
         mDatabase = FirebaseDatabase.getInstance().getReference().child("travel").child(selectedItemText);
         mDatabase.keepSynced(true);
@@ -196,53 +200,58 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
         FirebaseRecyclerOptions<travel> options = new FirebaseRecyclerOptions.Builder<travel>().setQuery(query, travel.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<travel, TravelViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull TravelViewHolder holder, int position, @NonNull travel travel2)
+            protected void onBindViewHolder(@NonNull TravelViewHolder holder, final int position, @NonNull travel travel2)
             {
-                Log.d("KEY","ID REACHING ");
-
-                //final String travel_id = travel2.gettravel_id();
                 String travel_gointto = travel2.getno_of_going();
                 String travel_detail=travel2.getdetails();
-                String travel_host = travel2.gethost();
+                travel_host  = travel2.gethost();
                 String travel_place = travel2.getplace();
                 String travel_image = travel2.getImage();
-                String travel_interested = travel2.getInterested();
+                id = travel2.gettravel_id();
+                trip_city = travel2.getplace();
 
-                final ArrayList<Reviews> reviews = new ArrayList<>();
+                travel tra = new travel();
+                tra.details = travel_detail;
+                tra.no_of_going = travel_gointto;
+                tra.host = travel_host;
+                tra.travel_id = id;
+                tra.place = trip_city;
+                Trips.add(tra);
 
                 holder.textView_place.setText(travel_place);
                 holder.textView_host.setText(travel_host);
-                holder.textView_detail.setText(travel_detail);
-                holder.textView_interested.setText(travel_interested);
+                holder.textView_detail.setText(travel_detail);	
+		holder.textView_interested.setText(travel_interested);
                 holder.textView_goingno.setText(String.valueOf(travel_gointto));
 
-
+                /*
+                Glide.with(getActivity()).load(stay.getImage()).into(holder.imageView);
                 final TravelItemDetailFragment stay_detail = new TravelItemDetailFragment();
                 final Bundle bunfrag2 = new Bundle();
                 bunfrag2.putSerializable(StayFragmentsActivity.STAY_FOR_DETAIL, travel2 );
+                */
 
                 holder.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i =new Intent(getActivity(), StayFragmentsActivity.class);
-                        i.putExtra(StayFragmentsActivity.FRAGMENT_NAME, StayFragmentsActivity.DETAIL_FRAGMENT_NAME);
-                        i.putExtra(StayFragmentsActivity.STAY_FOR_DETAIL_BUNDLE, bunfrag2 );//bunfrag define 4 lines above this line
-                        startActivityForResult(i, DISPLAY_REQUEST_CODE);
-                    }
-                });
 
-                holder.interested.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getActivity(),"Interested",Toast.LENGTH_SHORT).show();
-                    }
-                });
-                holder.going.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getActivity(),"Going",Toast.LENGTH_SHORT).show();
+                        travel ret = Trips.get(position);
+                        Log.d("TAG","ONLICK "+position);
+                        ArrayList<Reviews> stay_requests = getReviews(ret.travel_id,ret.place);
+                        Bundle bunfrag = new Bundle();
+                        bunfrag.putParcelableArrayList("your_requests",stay_requests);
+                        TripReviewsFragment your_stay_requests = new TripReviewsFragment();
+                        your_stay_requests.setArguments(bunfrag);
+                        /*
+                        try { Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            //e.printStackTrace();
+                        }
+                        */
+                        android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame, your_stay_requests);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                     }
                 });
             }
@@ -253,12 +262,57 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 return new TravelViewHolder(view);
             }
         };
-
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
+    public ArrayList<Reviews> getReviews(String id, String city)
+    {
+        Log.d("TAG","ONCLICK "+city+"  "+id);
+        final ArrayList<Reviews> reviews = new ArrayList<Reviews>();
+        DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("travel").child(city).child(id).child("reviews");
+        requestRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for ( DataSnapshot data : dataSnapshot.getChildren() )
+                {
+                    Reviews r = new Reviews();
+                    /*
+                    String rt = data.child("text").getValue().toString();
+                    r.text = rt;
+                    String ru = data.child("review_username").getValue().toString();
+                    r.review_username = ru;
+                    String rat = data.child("review_rating").getValue().toString();
+                    r.review_rating = rat;
+                    Log.d("TAG","REACHING "+data.getKey());
+                    */
+                    if ( data.hasChild("review_rating") )
+                    { if ( data.child("review_rating").getValue().toString() != null )
+                    { r.review_rating = data.child("review_rating").getValue().toString(); } }
 
+                    if ( data.hasChild("review_username"))
+                    { if ( data.child("review_username").getValue().toString() != null )
+                    { r.review_username = data.child("review_username").getValue().toString(); } }
+
+                    if ( data.hasChild("text") )
+                    { if ( data.child("text").getValue().toString() != null )
+                    { r.text = data.child("text").getValue().toString(); } }
+
+                    if ( data.hasChild("city") )
+                    { if ( data.child("city").getValue().toString() != null )
+                    { r.city = data.child("city").getValue().toString(); } }
+
+                    if ( data.hasChild("trip_id") )
+                    { if ( data.child("trip_id").getValue().toString() != null )
+                    { r.trip_id = data.child("trip_id").getValue().toString(); } }
+
+                    reviews.add(r);
+                }
+            }
+            @Override public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+        return reviews;
+    }
 
     public void recentSearched()
     {
@@ -292,11 +346,10 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
         }
     }
 
-
     class TravelViewHolder extends RecyclerView.ViewHolder {
-        TextView textView_host, textView_place, textView_detail, textView_goingno, textView_interested;
+        TextView textView_host, textView_place, textView_detail, textView_goingno, textView_interested;;
         ImageView imageView;
-        ImageButton interested , going;
+ImageButton interested , going;
         public TravelViewHolder(View itemView) {
             super(itemView);
             interested = itemView.findViewById(R.id.travel_button_willjoin);
@@ -306,7 +359,7 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
             textView_detail = itemView.findViewById(R.id.travel_details);
             textView_goingno = itemView.findViewById(R.id.travel_goingno);
             imageView = itemView.findViewById(R.id.travel_hostpic);
-            textView_interested = itemView.findViewById(R.id.travel_interested);
+textView_interested = itemView.findViewById(R.id.travel_interested);
         }
     }
 
@@ -319,9 +372,8 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
     */
 
     @Override
-    public void onResume() {
-        super.onResume();
-        recentSearched();
+    public void onResume() { super.onResume();
+        //recentSearched();
     }
 
     @Override
