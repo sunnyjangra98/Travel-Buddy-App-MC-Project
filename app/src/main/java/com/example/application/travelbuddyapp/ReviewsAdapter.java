@@ -1,5 +1,6 @@
 package com.example.application.travelbuddyapp;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHolder> {
 
+    private Context mCtx;
     private List<Reviews> reviewsList;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView username, review_text, review_rating;
@@ -21,9 +23,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHo
         }
     }
 
-    public ReviewsAdapter(List<Reviews> moviesList) {
-        this.reviewsList = moviesList;
-    }
+    public ReviewsAdapter(Context mCtx, List<Reviews> requestsList) { this.reviewsList = requestsList;this.mCtx=mCtx; }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,12 +36,11 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Reviews reviews = reviewsList.get(position);
         holder.username.setText(reviews.getReview_username());
-        //holder.review_text.setText(reviews);
+        holder.review_text.setText(reviews.getText());
         holder.review_rating.setText(String.valueOf(reviews.getReview_rating()));
     }
 
-    @Override
-    public int getItemCount() {
+    @Override public int getItemCount() {
         return reviewsList.size();
     }
 }
