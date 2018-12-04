@@ -253,6 +253,7 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
                 return new TravelViewHolder(view);
             }
         };
+
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
