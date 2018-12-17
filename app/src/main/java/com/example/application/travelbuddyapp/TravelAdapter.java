@@ -1,6 +1,9 @@
 package com.example.application.travelbuddyapp;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,20 +46,35 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
 
 
     @Override
-    public void onBindViewHolder(TravelAdapter.TravelViewHolder holder, int position) {
+    public void onBindViewHolder(final TravelAdapter.TravelViewHolder holder, int position) {
         //getting the product of the specified position
-        travel trvl = travelList.get(position);
-
-
-        //binding the data with the viewholder views
-       // holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(trvl.getImage()));
+        final travel trvl = travelList.get(position);
+        String travel_id = trvl.travel_id;
+        String city = trvl.place;
 
         holder.textView_place.setText(trvl.getplace());
         holder.textView_host.setText(trvl.gethost());
         holder.textView_detail.setText(String.valueOf(trvl.getdetails()));
         holder.textView_goingno.setText(String.valueOf(trvl.getno_of_going()));
         holder.textView_interested.setText(String.valueOf(trvl.getInterested()));
-       // Glide.with(mCtx).load(travel.getImage()).into(holder.imageView);
+        int delhiImage = R.drawable.tomb;
+        int jaipurImage = R.drawable.jaipur;
+        Uri delhi =Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + mCtx.getResources().getResourcePackageName(delhiImage)
+                + '/' + mCtx.getResources().getResourceTypeName(delhiImage)
+                + '/' + mCtx.getResources().getResourceEntryName(delhiImage));
+        Uri jaipur = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + mCtx.getResources().getResourcePackageName(jaipurImage)
+                + '/' + mCtx.getResources().getResourceTypeName(jaipurImage)
+                + '/' + mCtx.getResources().getResourceEntryName(jaipurImage));
+        if (city.equals("Delhi"))
+            holder.imageView.setImageURI(delhi);
+        else if (city.equals("jaipur"))
+            holder.imageView.setImageURI(jaipur);
+        //Glide.with(mCtx).load().into(holder.imageView);
+
+        //binding the data with the viewholder views
+       // holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(trvl.getImage()));
 
     }
 
@@ -88,7 +106,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.TravelView
                     if (listner != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
-                            listner.onItemClick(position);
+                            //listner.onItemClick(position);
                         }
                     }
                 }

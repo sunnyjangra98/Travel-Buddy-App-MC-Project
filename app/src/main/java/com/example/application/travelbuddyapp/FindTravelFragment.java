@@ -60,12 +60,12 @@ public class FindTravelFragment extends Fragment implements TravelDialog.TravelD
     View root;
     String selectedItemText;
     SearchView searchView;
-    TravelAdapter adapter;
+//    TravelAdapter adapter;
     FloatingActionButton fab;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     String query = "";
-List<travel> travelList;
+//List<travel> travelList;
     travel travelfromfb;
     String ftripName, ftripDetail, fPlace, fDate, fCity;
     String rtripName, rtripDetail, rPlace, rDate, rCity, rInterested;
@@ -221,7 +221,7 @@ List<travel> travelList;
                 holder.textView_place.setText(travel_place);
                 holder.textView_host.setText(travel_host);
                 holder.textView_detail.setText(travel_detail);	
-		holder.textView_interested.setText(travel_interested);
+		        holder.textView_interested.setText("5");
                 holder.textView_goingno.setText(String.valueOf(travel_gointto));
 
                 /*

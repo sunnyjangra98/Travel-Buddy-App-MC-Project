@@ -3,13 +3,13 @@ package com.example.application.travelbuddyapp;
 import java.io.Serializable;
 
 public class travel implements Serializable {
-    private String travel_id;
-    private String image;
-    private String place;
-    private String details;
-    private String host;
-    private String no_of_going;
-    private String interested;
+    String travel_id;
+    String image;
+    String place;
+    String details;
+    String host;
+    String no_of_going;
+    String interested;
 
     public travel(){
 
